@@ -1,0 +1,250 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <div class="pull-left">
+        <h5>Add Product</h5>
+        <!-- <label for="">SEARCH BY location NAME</label> -->
+      </div>
+      <button class="btn btn-sm btn-square btn-primary pull-right ml-1" type="button" (click)="createCategory()">
+        <span class="fa fa-plus"></span> &nbsp; Save
+      </button>
+
+      <button class="btn btn-sm btn-square btn-primary pull-right" type="button" [routerLink]="['/products']">
+        <span class="fa fa-arrow-left"></span> &nbsp; Back
+      </button>
+
+    </div>
+    <div class="card-body row">
+      <div class="card-body">
+        <!-- start -->
+        <form>
+          <tabset class="tab-container">
+            <tab>
+              <ng-template tabHeading> Basic </ng-template>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="product-name"> Name. <span class="required">*</span> </label>
+                  <input type="email" class="form-control" id="product-name" name="name" [(ngModel)]="productObj.name"
+                    placeholder="" aria-describedby="area-name">
+                  <small id="area-name" class="form-text text-muted">
+                    Product name, cannot be longer than 50 characters.
+                  </small>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="description">Description</label>
+                  <input type="text" id="description" name="description" [(ngModel)]="productObj.description"
+                    class="form-control" aria-describedby="area-description">
+                  <small id="area-description" class="form-text text-muted">
+                    Product description, cannot be longer than 255 characters.
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="category" class="d-block">
+                  <span class="pull-left">Category</span>
+                </label>
+                <select class="form-control" name="category" id="category" [(ngModel)]="productObj.productCategoryId"
+                  aria-describedby="area-category">
+                  <option *ngFor="let item of productCategoryListObs | async" [value]="item.id"> {{ item.name }}
+                  </option>
+                </select>
+                <small id="area-category" class="form-text text-muted">
+                  Create your own categories to classify your products.
+                  <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+                    data-target="#category-modal" title="Add new"> <span class="fa fa-plus small"></span>
+                  </button>
+                </small>
+              </div>
+
+              <div class="form-row">
+
+                <div class="form-group col-md-6">
+                  <label for="buyingPrice">Buying Price</label>
+                  <input type="text" id="buyingPrice" name="price" [(ngModel)]="productObj.buyingPrice"
+                    class="form-control" aria-describedby="area-buyingPrice">
+                  <small id="area-buyingPrice" class="form-text text-muted">
+                    Estimated buying price of a product.
+                  </small>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="sellingPrice">Selling Price</label>
+                  <input type="text" id="sellingPrice" name="sellingPrice" [(ngModel)]="productObj.sellingPrice"
+                    class="form-control" aria-describedby="area-sellingPrice">
+                  <small id="area-sellingPrice" class="form-text text-muted">
+                    Estimated selling price of a product.
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="SKU"> Stock keeping unit </label>
+                  <input type="text" [(ngModel)]="productObj.sKU" class="form-control" name="SKU" id="SKU"
+                    placeholder="" aria-describedby="area-SKU">
+                  <small id="area-SKU" class="form-text text-muted">
+                    Stock Keeping Unit. Uniquely identifies a product internally.
+                  </small>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="UPC"> Universal product code </label>
+                  <input type="text" [(ngModel)]="productObj.uPC" class="form-control" name="UPC" id="UPC"
+                    placeholder="" aria-describedby="area-UPC">
+                  <small id="area-UPC" class="form-text text-muted">
+                    Universal product code. Uniquely identifies a product externally.
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="minStockLevel"> Min Stock Level </label>
+                  <input type="text" [(ngModel)]="productObj.minStockLevel" class="form-control" name="minStockLevel"
+                    id="minStockLevel" placeholder="" aria-describedby="area-minStockLevel">
+                  <small id="minStockLevel" class="form-text text-muted">
+                    Set low inventory warnings.
+                  </small>
+                </div>
+              </div>
+            </tab>
+
+            <tab>
+              <ng-template tabHeading> Dimensions </ng-template>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="weight"> Weight </label>
+                  <input type="text" [(ngModel)]="productObj.weight" class="form-control" name="weight" id="weight"
+                    placeholder="" aria-describedby="area-weight">
+                  <small id="weight" class="form-text text-muted">
+                    Weight of a single piece.
+                  </small>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                  <label for="width"> Width </label>
+                  <input type="text" [(ngModel)]="productObj.width" class="form-control" name="width" id="width"
+                    placeholder="" aria-describedby="area-width">
+                  <small id="width" class="form-text text-muted">
+                    Width of a single piece.
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="Height"> Height </label>
+                  <input type="text" [(ngModel)]="productObj.height" class="form-control" name="Height" id="Height"
+                    placeholder="" aria-describedby="area-Height">
+                  <small id="Height" class="form-text text-muted">
+                    Height of a single piece.
+                  </small>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                  <label for="Depth"> Depth </label>
+                  <input type="text" [(ngModel)]="productObj.depth" class="form-control" name="Depth" id="Depth"
+                    placeholder="" aria-describedby="area-Depth">
+                  <small id="Depth" class="form-text text-muted">
+                    Depth of a single piece.
+                  </small>
+                </div>
+              </div>
+            </tab>
+
+            <tab>
+              <ng-template tabHeading> URL </ng-template>
+
+              <div class="form-group">
+                <label for="productPageURL"> Product Page URL </label>
+                <input type="text" [(ngModel)]="productObj.productPageURL" class="form-control" name="productPageURL"
+                  id="productPageURL" placeholder="" aria-describedby="area-productPageURL">
+                <small id="productPageURL" class="form-text text-muted">
+                  URL of a product's page.
+                </small>
+              </div>
+            </tab>
+
+            <tab>
+              <ng-template tabHeading> Logistics </ng-template>
+
+              <div class="form-group">
+                <label for="barcodeSystem"> Barcode System </label>
+                <input type="text" [(ngModel)]="productObj.barcodeSystem" class="form-control" name="barcodeSystem"
+                  id="barcodeSystem" placeholder="" aria-describedby="area-barcodeSystem">
+                <small id="barcodeSystem" class="form-text text-muted">
+                  EAN/UPC/ISBN.
+                </small>
+              </div>
+
+
+              <div class="form-group">
+                <label for="barcodeNumber"> Barcode Number </label>
+                <input type="text" [(ngModel)]="productObj.barcodeNumber" class="form-control" name="barcodeNumber" id="barcodeNumber"
+                  placeholder="" aria-describedby="area-barcodeNumber">
+                <small id="barcodeNumber" class="form-text text-muted">
+                    1120103127459 etc.
+                </small>
+              </div>
+            </tab>
+
+            <!-- <tab>
+              <ng-template tabHeading> Attributes </ng-template>
+
+              <div class="p-3">
+                Color, Size
+              </div>
+            </tab> -->
+
+          </tabset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="category-modal" tabindex="-1" role="dialog" aria-labelledby="area-category-modal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="area-category-modal">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="inputEmail4"> Name. <span class="required">*</span> </label>
+          <input type="email" name="name" [(ngModel)]="productCategoryObj.name" class="form-control" id="inputEmail4"
+            placeholder="" aria-describedby="NameField">
+          <small id="NameField" class="form-text text-muted">
+            Product name, cannot be longer than 50 characters.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword4">Description</label>
+          <input type="text" id="inputPassword5" name="desc" [(ngModel)]="productCategoryObj.description"
+            class="form-control" aria-describedby="passwordHelpBlock">
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Product description, cannot be longer than 255 characters.
+          </small>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addProductCategory()"> SAve </button>
+      </div>
+    </div>
+  </div>
+</div>

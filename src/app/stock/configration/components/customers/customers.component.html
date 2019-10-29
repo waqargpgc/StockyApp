@@ -1,0 +1,125 @@
+<!--list Company -->
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="pull-left">Customers</h5>
+        </div>
+        <div class="card-body row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="pull-left"> </h5>
+                        <div class="pull-right">
+                            <input type="text" id="searchFilter" class="input-sm form-control" style="width:255px" placeholder="SEARCH BY CUSTOMERS NAME">
+                            <!-- <label for="">SEARCH BY CUSTOMERS NAME</label> -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead class="thead-light text-center">
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let sup of customerList;let i=index">
+                                    <td> {{ i + 1 }} </td>
+                                    <td> {{ sup?.name }} </td>
+                                    <td> {{ sup?.email }} </td>
+                                    <td> {{ sup?.mobile }} </td>
+                                    <td> {{ sup?.phone }} </td>
+                                    <td> {{ sup?.address }} </td>
+                                    <td>
+                                        <span *ngIf="sup.isActive" class="badge badge-pill badge-success mr-1" style="font-size: .9em;">{{ sup.isActive }}</span>
+                                        <span *ngIf="!sup.isActive" class="badge badge-pill badge-danger mr-1" style="font-size: .9em;">{{ sup.isActive }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="pointer">
+                                          <i class="fa fa-trash mr-1" (click)="Delete(sup)" placement="top" tooltip="Delete"></i>
+                                        </span>
+                                        <span class="pointer">
+                                          <i class="fa fa-edit mr-1" (click)="Update(sup)" placement="top" tooltip="Update"></i>
+                                        </span>
+                                        <!-- <span class="pointer">
+                                        <i class="fa fa-eye" (click)="openRoleDetailModal(sup)" style="color:black;"
+                                          tooltip="View Role"> </i>
+                                      </span> -->
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                                <tfoot>
+                                <!-- <tr *ngIf="supplierList.length == 0">
+                                    <td colspan="9">
+                                        <p>There is no recods to show</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <strong class="text-primary pull-left mt-2">Total = {{totalElements | number}}</strong>
+                                        <ngb-pagination class="pull-right" [collectionSize]="totalElements" [maxSize]="5" [pageSize]="pageSize" [(page)]="page" [boundaryLinks]="true" (pageChange)="onPageChange($event)">
+                                        </ngb-pagination>
+                                    </td>
+                                </tr> -->
+                          </tfoot>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- add and update Company -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="pull-left">{{modalHeader}}</h5>
+                    </div>
+
+                    <form class="card-body">
+                        <div class="row">
+                            <div class="form-group has-float-label col-md-12 col-sm-12 mb-4">
+                                <label for="cname">Full Name </label>
+                                <input type="text" class="form-control" id="cname" name="xame" [(ngModel)]="customer.name" required>
+                            </div>
+
+                            <div class="form-group has-float-label col-md-12 col-sm-12 mb-4">
+                                <label for="email"> Email </label>
+                                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="customer.email" required>
+                            </div>
+                            <div class="form-group has-float-label col-md-12 col-sm-12 mb-4">
+                                <label for="Mobile"> Mobile </label>
+                                <input type="text" class="form-control" id="Mobile" name="Mobile" [(ngModel)]="customer.mobile" required>
+                            </div>
+                            <div class="form-group has-float-label col-md-12 col-sm-12 mb-4">
+                                <label for="phone"> Phone </label>
+                                <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="customer.phone" required>
+                            </div>
+                            <div class="form-group has-float-label col-md-12 col-sm-12 mb-4">
+                                <label for="address"> Address </label>
+                                <input type="text" class="form-control" id="address" name="address" [(ngModel)]="customer.address" required>
+                            </div>
+
+
+                        </div>
+                        <div class="pull-right mt-4 mb-1">
+                            <button type="button" class="btn btn-sm btn-success mr-3" (click)="AddOrUpdateCustomer()">
+                {{submitButton}} </button>
+                            <button type="button" class="btn btn-sm btn-danger" (click)="Cancel()">Cancel</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <!--end add and update Company -->
+        </div>
+    </div>
+</div>
+<!--end list Company -->

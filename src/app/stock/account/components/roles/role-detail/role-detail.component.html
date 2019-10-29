@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">Role Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+
+<div class="modal-body row">
+    <div class="col-md-12 col-sm-12">
+        <h3 class="text-center">Role: &nbsp;{{roleInfo?.displayName}} </h3>
+    </div>
+    <div *ngIf="roleInfo?.claims==''" class="col-md-12 col-sm-12">
+        <h5 class="text-center">this user have no permission</h5>
+    </div>
+    <div class="col-md-4 shadow-sm pb-4 pt-4" *ngFor="let grp of roleInfo?.claims">
+        <h5>{{grp.group}}</h5>
+        <div *ngFor="let permission of grp.permissions ">
+            <span placement="right" tooltip="{{permission?.description}} ">
+            {{permission?.name}}
+        </span>
+        </div>
+    </div>
+    <!-- <div class="jumbotron text-info ">
+        <pre>
+        {{ roleInfo | json}}
+    </pre>
+    </div> -->
+</div>
+
+<div class="modal-footer ">
+    <button type="button " class="btn btn-sm btn-danger " (click)="activeModal.close() ">Close</button>
+</div>

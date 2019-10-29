@@ -1,0 +1,128 @@
+<div class="modal-header">
+    <h4 class="modal-title">User Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+</div>
+
+<div class="modal-body row">
+    <div class="col-md-4">
+        <img alt="" style="width:400px;" title="" class="img-circle img-thumbnail isTooltip" [src]="userInfo?.avatarURL" data-original-title="Usuario">
+    </div>
+    <div class="col-md-8">
+        <div class="table-responsive">
+            <table class="table table-condensed">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-asterisk text-primary"></span>
+                                    Status
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.isActive || 'N/A'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-user text-primary"></span>
+                                    First Name
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.firstName || 'N/A'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-user text-primary"></span>
+                                    Last Name
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.lastName || 'N/A'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                        <span class="fa fa-phone text-primary"></span>
+                                        Phone
+                                    </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.phone || 'N/A'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-bookmark text-primary"></span>
+                                    User Name
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.userName || 'N/A'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-bookmark text-primary"></span>
+                                    Designation
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.designation ||'N/A'}}
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-eye text-primary"></span>
+                                    Role
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            <span *ngFor="let role of userInfo?.roles">
+                            <span class="badge badge-success mr-1" style="font-size: .9em;">{{role.displayName || 'N/A'}}</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-envelope-o text-primary"></span>
+                                    Email
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.email || 'N/A'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                    <span class="fa fa-calendar text-primary"></span>
+                                    Created At
+                                </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{userInfo?.createdDate | date:'medium' || 'N/A'}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-danger" (click)="activeModal.close()">Close</button>
+</div>

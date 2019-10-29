@@ -1,0 +1,83 @@
+<div class="animated fadeIn">
+  <div class="card">
+      <div class="card-header">
+          <h5 class="pull-left"> Purchase Orders </h5>
+          <!-- <button class="btn btn-sm btn-square btn-primary pull-right" type="button" [routerLink]="['/po/add']">
+            <span class="fa fa-plus"></span> &nbsp;Add
+            Product</button> -->
+          <button class="btn btn-sm btn-square btn-primary pull-right" type="button" data-toggle="modal"
+          data-target="#Purchase-Order-modal" data-backdrop="static" data-keyboard="false">
+            <span class="fa fa-plus"></span> &nbsp;Add
+            Product</button>
+      </div>
+      <div class="card-body row">
+          <div class="col-md">
+              <div class="card">
+                  <div class="card-header">
+                    <div class="pull-left">
+                      <input type="text" id="searchFilter" class="input-sm form-control" style="width:255px"
+                        placeholder="SEARCH BY PRODUCT NAME">
+                      <!-- <label for="">SEARCH BY location NAME</label> -->
+                    </div>
+                  </div>
+                  <div class="card-body">
+                        <pre>
+                          {{ purchaseOrderList | json }}
+                        </pre>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Purchase Orders Modal -->
+  <div class="modal fade" id="Purchase-Order-modal" tabindex="-1" role="dialog" aria-labelledby="area-cPurchase-Order-modal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="area-Purchase-Order-modal">Purchase Orders</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="input1">  Order Reference <span class="required">*</span> </label>
+          <input type="text" name="name" [(ngModel)]="purchaseOrder.orderReference" class="form-control" id="input1"
+            placeholder="" aria-describedby="NameField">
+        </div>
+        <div class="form-group">
+          <label for="category">Suppliers</label>
+          <select class="form-control" name="category" id="category" [(ngModel)]="purchaseOrder.suplierId"
+            aria-describedby="area-category">
+            <option *ngFor="let item of SupplierList | async" [value]="item.id"> {{ item.name }}
+            </option>
+          </select>
+          <!-- <small id="area-category" class="form-text text-muted">
+            Create your own categories to classify your products.
+             <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+              data-target="#category-modal" title="Add new"> <span class="fa fa-plus small"></span>
+            </button>
+          </small> -->
+        </div>
+        <div class="form-group">
+          <label for="input2"> Requested Date. <span class="required">*</span> </label>
+          <input type="date" name="name" [(ngModel)]="purchaseOrder.requiredDate" class="form-control" id="input2"
+            placeholder="" aria-describedby="NameField">
+        </div>
+        <div class="form-group">
+          <label for="input3"> Shipped Date. <span class="required">*</span> </label>
+          <input type="date" name="name" [(ngModel)]="purchaseOrder.shippedDate" class="form-control" id="input3"
+            placeholder="" aria-describedby="NameField">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" (click)="addOrUpdatePurchaseOrder()"> save </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Purchase Orders Modal -->

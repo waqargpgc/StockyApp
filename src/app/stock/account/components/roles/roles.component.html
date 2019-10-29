@@ -1,0 +1,123 @@
+<!--list role -->
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="pull-left">Roles</h5>
+        </div>
+        <div class="card-body row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="pull-left">Roles List</h5>
+                        <div class="has-float-label pull-right">
+                            <input type="text" id="searchFilter" class="input-sm form-control" style="width:255px">
+                            <label for="">SEARCH BY ROLE NAME</label>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead class="thead-light text-center">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th> Users </th>
+                                        <th> Status </th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let role of roles;let i=index">
+                                        <td> {{ role.displayName }} </td>
+                                        <td> 5 </td>
+                                        <td>
+                                            <span *ngIf="role.isActive" class="badge badge-pill badge-success mr-1" style="font-size: .9em;">{{ role.isActive }}</span>
+                                            <span *ngIf="!role.isActive" class="badge badge-pill badge-danger mr-1" style="font-size: .9em;">{{ role.isActive }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="pointer">
+                                              <i class="fa fa-trash mr-1" (click)="deleteUser(role)" placement="top" tooltip="Delete"></i>
+                                            </span>
+                                            <span class="pointer">
+                                              <i class="fa fa-edit mr-1" (click)="UpdateRole(role)" placement="top" tooltip="Update"></i>
+                                            </span>
+                                            <span class="pointer">
+                                            <!-- routerLink="./{{role.name}openRoleDetailModal}" -->
+                                            <i class="fa fa-eye" (click)="openRoleDetailModal(role)" style="color:black;"
+                                              tooltip="View Role"> </i>
+                                          </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr *ngIf="roles.length == 0">
+                                        <td colspan="9">
+                                            <p>There is no recods to show</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6">
+                                          <strong class="text-primary pull-left mt-2">Total = {{paginationModel.totalRecords | number}}</strong>
+                                          <pagination [totalItems]="paginationModel.totalRecords" (pageChanged)="onPageChange($event)"></pagination>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- add and update role -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="pull-left">{{modalHeader}}</h5>
+                        <!-- <button class="btn btn-sm btn-square btn-primary pull-right" type="button"
+                (click)="openAddRoleModal()">Add
+                Role</button> -->
+                    </div>
+
+                    <form class="card-body" [formGroup]="Roleform">
+                        <div class="row">
+                            <div class="form-group has-float-label col-md-12 col-sm-12 mb-4">
+                                <label for="rolename"> Name </label>
+                                <input type="text" formControlName='rolename' class="form-control" id="rolename" name="rolename" [(ngModel)]="rolename" required>
+                                <small class="text-danger" *ngIf="Roleform.get('rolename').touched">
+                                    <span *ngIf="Roleform.get('rolename').hasError('rolename')">Role Name is required</span>
+                                  </small>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 mb-5">
+                                <div role="group" aria-label="Basic example">
+                                    <button type="button" style="font-size: .9em;" class="btn btn-sm badge badge-pill badge-success mr-2" (click)="selectAll()">Select All</button>
+                                    <button type="button" style="font-size: .9em;" class="btn btn-sm badge badge-pill badge-danger" (click)="selectNone()">Select None</button>
+                                </div>
+                            </div>
+
+                            <div class="checkbox col-md-4 pb-4 shadow-sm pointer" *ngFor="let grp of permissionArray">
+                                <h5 [id]="grp.class" class="{{ grp.class }} btn" (click)="selectGroup($event)">{{grp.group}}</h5>
+
+                                <div *ngFor="let permission of grp.permissions">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="{{ grp.class }} permission-item custom-control-input" [id]="permission.value" [value]="permission.value">
+
+                                        <label class="custom-control-label" [for]="permission.value" placement="right" tooltip="{{permission.description}}">
+                      {{permission.name}}
+                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right mt-4 mb-1">
+                            <button type="button" class="btn btn-sm btn-success mr-3" [disabled]="!Roleform.valid" (click)="AddOrUpdateRole(submitButton)">
+                {{submitButton}} </button>
+                            <button type="button" class="btn btn-sm btn-danger" (click)="Cancel()">Close</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <!--end add and update role -->
+        </div>
+    </div>
+</div>
+<!--end list role -->

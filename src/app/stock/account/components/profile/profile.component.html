@@ -1,0 +1,123 @@
+<div class="animated fadeIn">
+    <div class="animated fadeIn">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="pull-left">Profile Setting</h5>
+            </div>
+            <div class="card-body">
+                <div class="container p-0">
+                    <div class="row">
+                        <div class="col-md-4 col-xl-3">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Profile Settings</h5>
+                                </div>
+
+                                <div class="list-group list-group-flush" role="tablist" id="tablist-container">
+                                    <a class="list-group-item list-group-item-action active" data-toggle="list" routerLink="./" data-tab="account">
+                                        Account
+                                    </a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list" routerLink="./"  data-tab="password">
+                                        Password
+                                    </a>
+                                    <!-- <a class="list-group-item list-group-item-action" data-toggle="list" routerLink="./" data-tab="">
+                                        Privacy and safety
+                                    </a> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 col-xl-9">
+                            <div id="tabs-container">
+                                <div class="fade show tab-item" id="account" >
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title mb-0">User info</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="form-group has-float-label col-sm-12">
+                                                                <label>First Name</label>
+                                                                <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName">
+                                                            </div>
+                                                            <div class="form-group has-float-label col-sm-12">
+                                                                <label>Last Name</label>
+                                                                <input type="text" class="form-control" name="lastNamee" [(ngModel)]="user.lastName">
+                                                            </div>
+                                                            <div class="form-group has-float-label col-sm-12">
+                                                                <label>User Name</label>
+                                                                <input type="email" class="form-control" name="userName" [(ngModel)]="user.userName">
+                                                            </div>
+
+                                                            <div class="form-group has-float-label col-sm-12">
+                                                                <label>Email Address</label>
+                                                                <input type="email" class="form-control" name="email" [(ngModel)]="user.email">
+                                                            </div>
+
+                                                            <div class="form-group has-float-label col-sm-12">
+                                                                <label>Phone No</label>
+                                                                <input type="tel" class="form-control" name="phone" [(ngModel)]="user.phoneNumber">
+                                                            </div>
+                                                        </div>
+
+                                                        <button type="submit" class="btn btn-primary btn-sm" (click)="updateProfile()">Update Profile</button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="text-center">
+                                                        <div class="image-wrapper">
+                                                            <img [src]="avatarUrl" class="rounded-circle img-responsive mt-2" width="165" height="165">
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                          <input #file type="file" multiple (change)="upload(file.files)" />
+                                                        </div>
+                                                      </div>
+
+                                                       <div>
+                                                        <a href="javascript:void(0);" *ngFor="let img of user.images"  class="d-inline-block">
+                                                          <img (click)="updateSelectedAvatar(img)" (mouseenter)="imgPreview($event)" [src]="img.imageURL" class="rounded-circle img-thumbnail avatar-sm">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="fade show tab-item" id="password">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Password</h5>
+                                            <form>
+                                                <div class="form-group has-float-label col-sm-12">
+                                                    <label for="inputPasswordCurrent">Current password</label>
+                                                    <input type="password" class="form-control" id="inputPasswordCurrent">
+                                                    <small><a href="#">Forgot your password?</a></small>
+                                                </div>
+                                                <div class="form-group has-float-label col-sm-12">
+                                                    <label for="inputPasswordNew">New password</label>
+                                                    <input type="password" class="form-control" id="inputPasswordNew">
+                                                </div>
+                                                <div class="form-group has-float-label col-sm-12">
+                                                    <label for="inputPasswordNew2">Verify password</label>
+                                                    <input type="password" class="form-control" id="inputPasswordNew2">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
