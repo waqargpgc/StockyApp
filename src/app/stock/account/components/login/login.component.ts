@@ -11,7 +11,10 @@ export class LoginComponent {
   password: any = "Pass@123";
   username: any = "admin";
 
-  constructor(public _authService: AccountService, private router: Router) { }
+  constructor(public _authService: AccountService, private router: Router) 
+  { 
+
+  }
 
   login(form: NgForm) {
     let req$ = this._authService.login(form);
@@ -22,11 +25,9 @@ export class LoginComponent {
         localStorage.setItem("token", token);
         this._authService.isLoginSubject.next(true);
 
-        this._authService.updateCurrentUser(true);
+       // this._authService.updateCurrentUser(true);
         this._authService.isInvalidLogin = false;
-
-       this.router.navigate(["/dashboard"]);
-        // this.router.navigateByUrl('/dashboard');
+         this.router.navigate(["/dashboard"]);
       },
       err => {
         this._authService.isInvalidLogin = true;

@@ -1,4 +1,5 @@
-import {BaseModel, Product} from '../index';
+import { BaseModel } from './base_model';
+import { Product } from './product';
 
 export class Size extends BaseModel {
     name: string;

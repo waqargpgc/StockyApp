@@ -1,4 +1,6 @@
-import {BaseModel, Product, PurchaseOrder} from '../index';
+import { BaseModel } from './base_model';
+import { PurchaseOrder } from './purchase_order';
+import { Product } from './product';
 
 export class PurchaseOrderItem extends BaseModel {
     unitPrice: number;

@@ -1,4 +1,6 @@
-import {BaseModel, OrderStatus, SaleOrderItem} from '../index';
+import { BaseModel } from './base_model';
+import { OrderStatus } from './order_status';
+import { SaleOrderItem } from './sale_order_item';
 
 export class SaleOrder extends BaseModel {
     orderReference: string;

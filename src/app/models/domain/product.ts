@@ -1,4 +1,8 @@
-import {BaseModel, Inventory, OrderDetail, Order, ProductCategory} from '../index';
+import { BaseModel } from './base_model';
+import { Inventory } from './inventory';
+import { ProductCategory } from './product_category';
+import { OrderDetail } from './order_detail';
+import { Order } from './order';
 
 export class Product extends BaseModel {
     name: string;

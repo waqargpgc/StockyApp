@@ -1,4 +1,6 @@
-import {BaseModel, ProductSupplier, PurchaseOrder} from '../index';
+import { BaseModel } from './base_model';
+import { PurchaseOrder } from './purchase_order';
+import { ProductSupplier } from './product_supplier';
 
 export class Supplier extends BaseModel {
     name: string;
