@@ -8,6 +8,7 @@ export class ApiEndPoints {
   public static readonly ProductCategories = "api/ProductCategories";
   public static readonly Customers = "api/Customers";
   public static readonly Products = "api/products";
+  public static readonly ProductLookups = "api/products/lookups";
   public static readonly Inventories = "api/inventories";
 
   public static readonly PurchaseOrders = "api/PurchaseOrders";

@@ -47,13 +47,12 @@
                 </label>
                 <select class="form-control" name="category" id="category" [(ngModel)]="productObj.productCategoryId"
                   aria-describedby="area-category">
-                  <option *ngFor="let item of productCategoryListObs | async" [value]="item.id"> {{ item.name }}
+                  <option *ngFor="let item of productCategoryListObs" [value]="item.id"> {{ item.name }}
                   </option>
                 </select>
                 <small id="area-category" class="form-text text-muted">
                   Create your own categories to classify your products.
-                  <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
-                    data-target="#categoryModal" title="Add new"> <span class="fa fa-plus small"></span>
+                  <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal" (click)="categoryModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                   </button>
                 </small>
               </div>
@@ -210,13 +209,13 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="area-category-modal"
+<div bsModal #categoryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="area-category-modal">Product Category</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="categoryModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -241,8 +240,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addProductCategory()"> Save </button>
+        <button type="button" class="btn btn-secondary" (click)="categoryModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary"(click)="categoryModal.hide()" (click)="addProductCategory()"> Save </button>
       </div>
     </div>
   </div>

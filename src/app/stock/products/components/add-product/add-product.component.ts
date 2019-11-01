@@ -2,23 +2,21 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Location } from "@angular/common";
 import { Product, ProductCategory, Supplier } from "./../../../../models/index";
 import { ProductService } from './../../../../services/app.services';
-import { ProductCategoryService, SupplierService } from './../../../../services/app.services';
+import { ProductCategoryService } from './../../../../services/app.services';
 import { Observable } from 'rxjs';
 import { ApiEndPoints } from '../../../../models/constants';
-import {ModalDirective} from 'ngx-bootstrap/modal';
 @Component({
   selector: "stk-add-product",
   templateUrl: "./add-product.component.html",
   styleUrls: ["./add-product.component.scss"]
 })
 export class AddProductComponent implements OnInit {
+  public categoryModal;
   productEp = ApiEndPoints.Products;
   productCategoryObj: ProductCategory;
   productObj: Product;
   public productCategoryListObs: Observable<ProductCategory[]>;
-
   constructor(private productService: ProductService, private prodCategorySvc: ProductCategoryService) {}
-  @ViewChild('myModal', {static: false}) public myModal: ModalDirective;
   ngOnInit() {
     this.productObj = new Product();
     this.productCategoryObj = new ProductCategory();
@@ -26,8 +24,11 @@ export class AddProductComponent implements OnInit {
     this.loadDropDowns();
   }
 
-  loadDropDowns(){
-    this.productCategoryListObs = this.prodCategorySvc.list();
+  async loadDropDowns(){
+    //this.productCategoryListObs = this.prodCategorySvc.list();
+    let req = this.productService.list(null, ApiEndPoints.ProductLookups);
+    var lookups = await this.productService.getResponseFromSource(req);
+    this.productCategoryListObs = lookups.categoryList;
   }
 
   addProductCategory(){
