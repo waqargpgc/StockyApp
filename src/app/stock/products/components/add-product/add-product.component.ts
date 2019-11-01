@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Location } from "@angular/common";
 import { Product, ProductCategory, Supplier } from "./../../../../models/index";
 import { ProductService } from './../../../../services/app.services';
 import { ProductCategoryService, SupplierService } from './../../../../services/app.services';
 import { Observable } from 'rxjs';
 import { ApiEndPoints } from '../../../../models/constants';
-
+import {ModalDirective} from 'ngx-bootstrap/modal';
 @Component({
   selector: "stk-add-product",
   templateUrl: "./add-product.component.html",
@@ -18,7 +18,7 @@ export class AddProductComponent implements OnInit {
   public productCategoryListObs: Observable<ProductCategory[]>;
 
   constructor(private productService: ProductService, private prodCategorySvc: ProductCategoryService) {}
-
+  @ViewChild('myModal', {static: false}) public myModal: ModalDirective;
   ngOnInit() {
     this.productObj = new Product();
     this.productCategoryObj = new ProductCategory();
@@ -32,7 +32,6 @@ export class AddProductComponent implements OnInit {
 
   addProductCategory(){
     if(!this.productCategoryObj.name) return; // raise notification
-
     let req$ = this.prodCategorySvc.create(this.productCategoryObj);
     req$.subscribe(
       () => {

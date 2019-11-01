@@ -53,13 +53,12 @@
                 <small id="area-category" class="form-text text-muted">
                   Create your own categories to classify your products.
                   <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
-                    data-target="#category-modal" title="Add new"> <span class="fa fa-plus small"></span>
+                    data-target="#categoryModal" title="Add new"> <span class="fa fa-plus small"></span>
                   </button>
                 </small>
               </div>
 
               <div class="form-row">
-
                 <div class="form-group col-md-6">
                   <label for="buyingPrice">Buying Price</label>
                   <input type="text" id="buyingPrice" name="price" [(ngModel)]="productObj.buyingPrice"
@@ -211,12 +210,12 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="category-modal" tabindex="-1" role="dialog" aria-labelledby="area-category-modal"
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="area-category-modal"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="area-category-modal">Modal title</h5>
+        <h5 class="modal-title" id="area-category-modal">Product Category</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -243,7 +242,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addProductCategory()"> SAve </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addProductCategory()"> Save </button>
       </div>
     </div>
   </div>

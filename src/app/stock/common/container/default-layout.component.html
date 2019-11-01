@@ -1,9 +1,12 @@
-<app-header [navbarBrandRouterLink]="['/']" [fixed]="true" [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}" [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+<app-header [navbarBrandRouterLink]="['/']" [fixed]="true"
+    [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
+    [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
     [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
 
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item dropdown" dropdown placement="bottom right">
-            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                dropdownToggle (click)="false">
                 <img [src]="avatarUrl" class="img-avatar" alt="" />
             </a>
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
@@ -32,14 +35,16 @@
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn" [routerLink]="['/dashboard/play']"><i class="icon-graph"></i> &nbsp;Playground</a>
                     <a class="btn" [routerLink]="['/account/']" routerLinkActive="active"><i class="fa fa-shield"></i>
-            &nbsp;Account Managment</a>
+                        &nbsp;Account Managment</a>
                 </div>
             </li>
         </cui-breadcrumb>
 
-        <div class="container-fluid">
-            <router-outlet></router-outlet>
-        </div>
+        <perfect-scrollbar style="max-height: 100vh;min-width: 100vh;" [config]="config">
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </perfect-scrollbar>
 
     </main>
 

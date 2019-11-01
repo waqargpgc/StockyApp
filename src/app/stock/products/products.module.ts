@@ -33,7 +33,7 @@ const routes: Routes = [
     SharedModule,
     BsDropdownModule,
     RouterModule.forChild(routes),
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
   ],
   declarations: [ProductsComponent, AddProductComponent]
 })
