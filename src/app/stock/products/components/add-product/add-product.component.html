@@ -49,7 +49,7 @@
                     </button>
                   </label>
                   <select class="form-control" name="brand" id="brand" [(ngModel)]="productObj.productBrandId">
-                      <option>Select Product Brand</option>
+                    <option>Select Product Brand</option>
                     <option *ngFor="let item of productBrandListObs" [value]="item.id"> {{ item.name }}</option>
                   </select>
                   <small class="form-text text-muted">
@@ -75,7 +75,7 @@
                   <label for="supplier" class="d-block">
                     <span class="pull-left">Supplier</span>
                     <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
-                      (click)="supplier.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                      (click)="supplierModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                     </button>
                   </label>
                   <select class="form-control" name="supplier" id="supplier" [(ngModel)]="productObj.productSupplierId">
@@ -92,7 +92,7 @@
                   <label for="location" class="d-block">
                     <span class="pull-left">Location</span>
                     <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
-                      (click)="LocationModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                      (click)="locationModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                     </button>
                   </label>
                   <select class="form-control" name="location" id="location" [(ngModel)]="productObj.productLocationId">
@@ -186,6 +186,19 @@
               <ng-template tabHeading> Dimensions </ng-template>
 
               <div class="form-row">
+                <div class="col-md-4 offset-md-4">
+                  <div class="text-center">
+                    <div class="image-wrapper">
+                      <!-- <img [src]="productImageUrl" class="rounded-circle img-responsive mt-2" width="165" height="165"> -->
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <input #file type="file" multiple (change)="upload(file.files)" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="weight"> Weight </label>
                   <input type="text" [(ngModel)]="productObj.weight" class="form-control" name="weight" id="weight"
@@ -194,8 +207,6 @@
                     Weight of a single piece.
                   </small>
                 </div>
-
-
                 <div class="form-group col-md-6">
                   <label for="width"> Width </label>
                   <input type="text" [(ngModel)]="productObj.width" class="form-control" name="width" id="width"
@@ -293,25 +304,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="name"> Name. <span class="required">*</span> </label>
           <input type="text" name="name" [(ngModel)]="productCategoryObj.name" class="form-control" id="name">
           <small class="form-text text-muted">
-            Product name, cannot be longer than 50 characters.
+            name, cannot be longer than 50 characters.
           </small>
         </div>
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="description">Description</label>
           <input type="text" id="description" name="desc" [(ngModel)]="productCategoryObj.description"
             class="form-control">
           <small class="form-text text-muted">
-            Product description, cannot be longer than 255 characters.
+            description, cannot be longer than 255 characters.
           </small>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="categoryModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="categoryModal.hide()" (click)="addDropdownItems('category')">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="categoryModal.hide()">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="categoryModal.hide()"
+          (click)="addDropdownItems('category')">
           Save </button>
       </div>
     </div>
@@ -333,21 +345,21 @@
           <label for="name"> Name. <span class="required">*</span> </label>
           <input type="text" name="name" [(ngModel)]="productSizeObj.name" class="form-control" id="name">
           <small class="form-text text-muted">
-            Product Size, large,medium,small etc.
+            Size i.e large,medium,small etc.
           </small>
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <input type="text" id="description" name="desc" [(ngModel)]="productSizeObj.description"
-            class="form-control">
+          <input type="text" id="description" name="desc" [(ngModel)]="productSizeObj.description" class="form-control">
           <small class="form-text text-muted">
-            Size description, cannot be longer than 255 characters.
+            description, cannot be longer than 255 characters.
           </small>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="sizeModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="sizeModal.hide()" (click)="addDropdownItems('size')">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="sizeModal.hide()">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="sizeModal.hide()"
+          (click)="addDropdownItems('size')">
           Save </button>
       </div>
     </div>
@@ -365,25 +377,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="name"> Name. <span class="required">*</span> </label>
           <input type="email" name="name" [(ngModel)]="productLocationObj.name" class="form-control" id="name">
           <small id="NameField" class="form-text text-muted">
-            Location name, cannot be longer than 50 characters.
+            Location, cannot be longer than 50 characters.
           </small>
         </div>
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="description">Description</label>
           <input type="text" id="description" name="desc" [(ngModel)]="productLocationObj.description"
             class="form-control">
           <small class="form-text text-muted">
-            Location description, cannot be longer than 255 characters.
+            description, cannot be longer than 255 characters.
           </small>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="locationModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="locationModal.hide()" (click)="addDropdownItems('location')">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="locationModal.hide()">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="locationModal.hide()"
+          (click)="addDropdownItems('location')">
           Save </button>
       </div>
     </div>
@@ -401,25 +414,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="color"> Name. <span class="required">*</span> </label>
           <input type="text" name="name" [(ngModel)]="productColorObj.name" class="form-control" id="color">
           <small id="NameField" class="form-text text-muted">
-              color name, cannot be longer than 50 characters.
+            color, cannot be longer than 50 characters.
           </small>
         </div>
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="inputPassword4">Description</label>
           <input type="text" id="inputPassword5" name="desc" [(ngModel)]="productColorObj.description"
             class="form-control">
           <small id="description" class="form-text text-muted">
-            color description, cannot be longer than 255 characters.
+            description, cannot be longer than 255 characters.
           </small>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="colorModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="colorModal.hide()" (click)="addDropdownItems('color')">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="colorModal.hide()">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="colorModal.hide()"
+          (click)="addDropdownItems('color')">
           Save </button>
       </div>
     </div>
@@ -437,25 +451,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="name"> Name. <span class="required">*</span> </label>
           <input type="text" name="name" [(ngModel)]="productBrandObj.name" class="form-control" id="name">
-          <small  class="form-text text-muted">
-            Product brand, cannot be longer than 50 characters.
+          <small class="form-text text-muted">
+            brand, cannot be longer than 50 characters.
           </small>
         </div>
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="description">Description</label>
           <input type="text" id="description" name="desc" [(ngModel)]="productBrandObj.description"
             class="form-control">
           <small class="form-text text-muted">
-            brand description, cannot be longer than 255 characters.
+            description, cannot be longer than 255 characters.
           </small>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="brandModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="brandModal.hide()" (click)="addDropdownItems('brand')">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="brandModal.hide()">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="brandModal.hide()"
+          (click)="addDropdownItems('brand')">
           Save </button>
       </div>
     </div>
@@ -473,25 +488,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="name"> Name. <span class="required">*</span> </label>
           <input type="text" name="name" [(ngModel)]="productSupplierObj.name" class="form-control" id="name">
           <small class="form-text text-muted">
-            Product supplier, cannot be longer than 50 characters.
+            supplier, cannot be longer than 50 characters.
           </small>
         </div>
-        <div class="form-group">
+        <div class="form-group has-float-label">
           <label for="inputPassword4">Description</label>
           <input type="text" id="description" name="desc" [(ngModel)]="productSupplierObj.description"
             class="form-control">
           <small class="form-text text-muted">
-            Product description, cannot be longer than 255 characters.
+            description, cannot be longer than 255 characters.
           </small>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="supplierModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="supplierModal.hide()" (click)="addDropdownItems('supplier')">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="supplierModal.hide()">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="supplierModal.hide()"
+          (click)="addDropdownItems('supplier')">
           Save </button>
       </div>
     </div>

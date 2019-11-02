@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { Product, ProductCategory, Supplier, Brand,Location, Size, Color } from "./../../../../models/index";
-import { ProductService } from './../../../../services/app.services';
+import { Product, ProductCategory, Supplier, Brand, Location, Size, Color } from "./../../../../models/index";
+import { ProductService, BrandService, SizeService, LocationService, ColorService, SupplierService } from './../../../../services/app.services';
 import { ProductCategoryService } from './../../../../services/app.services';
 import { Observable } from 'rxjs';
 import { ApiEndPoints } from '../../../../models/constants';
@@ -10,6 +10,7 @@ import { ApiEndPoints } from '../../../../models/constants';
   styleUrls: ["./add-product.component.scss"]
 })
 export class AddProductComponent implements OnInit {
+  productImageUrl = "";
   public categoryModal;
   public sizeModal;
   public locationModal;
@@ -30,15 +31,29 @@ export class AddProductComponent implements OnInit {
   public productSizeListObs: Observable<Size[]>;
   public productColorListObs: Observable<Color[]>;
   public productSupplierListObs: Observable<Supplier[]>;
-  constructor(private productService: ProductService, private prodCategorySvc: ProductCategoryService) {}
+  constructor(
+    private productService: ProductService,
+    private prodCategorySvc: ProductCategoryService,
+    private prodSizeSvc: SizeService,
+    private prodLocationSvc: LocationService,
+    private prodColorSvc: ColorService,
+    private prodBrandSvc: BrandService,
+    private prodSupplierSvc: SupplierService,
+  ) { }
   ngOnInit() {
     this.productObj = new Product();
     this.productCategoryObj = new ProductCategory();
+    this.productBrandObj = new Brand();
+    this.productLocationObj = new Location();
+    this.productSizeObj = new Size();
+    this.productColorObj = new Color();
+    this.productSupplierObj = new Supplier();
+    this.productObj = new Product();
 
     this.loadDropDowns();
   }
 
-  async loadDropDowns(){
+  async loadDropDowns() {
     //this.productCategoryListObs = this.prodCategorySvc.list();
     let req = this.productService.list(null, ApiEndPoints.ProductLookups);
     var lookups = await this.productService.getResponseFromSource(req);
@@ -50,30 +65,78 @@ export class AddProductComponent implements OnInit {
     this.productSupplierListObs = lookups.supplierList;
   }
 
-  addDropdownItems(){
-    if(!this.productCategoryObj.name) return; // raise notification
-    let req$ = this.prodCategorySvc.create(this.productCategoryObj);
-    req$.subscribe(
-      () => {
+  addDropdownItems(type) {
+    if (type == 'category') {
+      if (!this.productCategoryObj.name) return; // raise notification
+      let req$ = this.prodCategorySvc.create(this.productCategoryObj);
+      req$.subscribe(() => {
         this.loadDropDowns();
-        this.productCategoryObj = new  ProductCategory();
+        this.productCategoryObj = new ProductCategory();
       }
-    )
+      )
+    } else if (type == 'location') {
+      if (!this.productLocationObj.name) return; // raise notification
+      let req$ = this.prodLocationSvc.create(this.productLocationObj);
+      req$.subscribe(() => {
+        this.loadDropDowns();
+        this.productLocationObj = new Location();
+      }
+      )
+    } else if (type == 'size') {
+      if (!this.productSizeObj.name) return; // raise notification
+      let req$ = this.prodSizeSvc.create(this.productSizeObj);
+      req$.subscribe(() => {
+        this.loadDropDowns();
+        this.productSizeObj = new Size();
+      }
+      )
+    } else if (type == 'brand') {
+      if (!this.productSupplierObj.name) return; // raise notification
+      let req$ = this.prodBrandSvc.create(this.productSupplierObj);
+      req$.subscribe(() => {
+        this.loadDropDowns();
+        this.productBrandObj = new Brand();
+      }
+      )
+    } else if (type == 'supplier') {
+      if (!this.productSupplierObj.name) return; // raise notification
+      let req$ = this.prodSupplierSvc.create(this.productSupplierObj);
+      req$.subscribe(() => {
+        this.loadDropDowns();
+        this.productSupplierObj = new Supplier();
+      }
+      )
+    } else if (type == 'color') {
+      if (!this.productColorObj.name) return; // raise notification
+      let req$ = this.prodColorSvc.create(this.productColorObj);
+      req$.subscribe(() => {
+        this.loadDropDowns();
+        this.productColorObj = new Color();
+      }
+      )
+    }
   }
-
-
-  createProduct(){
+  createProduct() {
     // todo:  Add validation constraints
     let req$ = this.productService.create(this.productObj, this.productEp);
     req$.subscribe(
-     resp => {
-       console.log(resp);
-     },
-     err => {
-       this.productService.handleError(err)
-    })
+      resp => {
+        console.log(resp);
+      },
+      err => {
+        this.productService.handleError(err)
+      })
   }
 
-
+  upload(files) {
+    //   if (files.length === 0) return;
+    //   const formData = new FormData();
+    //   for (let file of files) {
+    //     formData.append(file.name, file);
+    //   }
+    //   let req = this.productService.updateAvatar(formData);
+    //   req.subscribe(event => {
+    //   })
+  }
 
 }

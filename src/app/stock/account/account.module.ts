@@ -18,7 +18,7 @@ import { UserDetailComponent } from './components/users/user-detail/user-detail.
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +26,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AccountRoutingModule,
     CommonModule,
     FormsModule,
+    ModalModule,
     ReactiveFormsModule,
     BsDropdownModule,
     ButtonsModule.forRoot(),

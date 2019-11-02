@@ -40,19 +40,19 @@ export class CustomerService extends HttpBaseService {
 })
 export class InventoryLocationService extends HttpBaseService {
   constructor(httpClient: HttpClient ) {
-    super(httpClient, new HttpSetup(ApiEndPoints.InventoryLocations, ApiEndPoints.ApiRoot));
+    super(httpClient, new HttpSetup(ApiEndPoints.Locations, ApiEndPoints.ApiRoot));
   }
 }
 
-// SupplierService
-@Injectable({
-  providedIn: 'root'
-})
-export class SupplierService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
-    super(httpClient, new HttpSetup(ApiEndPoints.Suppliers, ApiEndPoints.ApiRoot));
-  }
-}
+// // SupplierService
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class SupplierService extends HttpBaseService {
+//   constructor(httpClient: HttpClient ) {
+//     super(httpClient, new HttpSetup(ApiEndPoints.Suppliers, ApiEndPoints.ApiRoot));
+//   }
+// }
 
 // ManufacturerService
 @Injectable({
@@ -73,7 +73,51 @@ export class ProductCategoryService extends HttpBaseService {
     super(httpClient, new HttpSetup(ApiEndPoints.ProductCategories, ApiEndPoints.ApiRoot));
   }
 }
-
+// ProductSizeService
+@Injectable({
+  providedIn: 'root'
+})
+export class SizeService extends HttpBaseService {
+  constructor(httpClient: HttpClient ) {
+    super(httpClient, new HttpSetup(ApiEndPoints.Sizes, ApiEndPoints.ApiRoot));
+  }
+}
+// ProductLocationService
+@Injectable({
+  providedIn: 'root'
+})
+export class LocationService extends HttpBaseService {
+  constructor(httpClient: HttpClient ) {
+    super(httpClient, new HttpSetup(ApiEndPoints.Locations, ApiEndPoints.ApiRoot));
+  }
+}
+// ProductSupplierService
+@Injectable({
+  providedIn: 'root'
+})
+export class SupplierService extends HttpBaseService {
+  constructor(httpClient: HttpClient ) {
+    super(httpClient, new HttpSetup(ApiEndPoints.Suppliers, ApiEndPoints.ApiRoot));
+  }
+}
+// ProductColorService
+@Injectable({
+  providedIn: 'root'
+})
+export class ColorService extends HttpBaseService {
+  constructor(httpClient: HttpClient ) {
+    super(httpClient, new HttpSetup(ApiEndPoints.Colors, ApiEndPoints.ApiRoot));
+  }
+}
+// ProductBrandService
+@Injectable({
+  providedIn: 'root'
+})
+export class BrandService extends HttpBaseService {
+  constructor(httpClient: HttpClient ) {
+    super(httpClient, new HttpSetup(ApiEndPoints.Brands, ApiEndPoints.ApiRoot));
+  }
+}
 // PurchaseOrderService
 @Injectable({
   providedIn: 'root'
@@ -92,4 +136,5 @@ export class PurchaseOrderItemService extends HttpBaseService {
   constructor(httpClient: HttpClient ) {
     super(httpClient, new HttpSetup(ApiEndPoints.PurchaseOrderItems, ApiEndPoints.ApiRoot));
   }
+  
 }

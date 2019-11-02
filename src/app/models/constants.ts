@@ -2,9 +2,12 @@ export class ApiEndPoints {
   public static readonly ApiRoot = "https://plyxtock.herokuapp.com";
   //public static readonly ApiRoot = "http://localhost:5000";
 
-  public static readonly InventoryLocations = "api/stores";
+  public static readonly Locations = "api/locations";
   public static readonly Suppliers = "api/Suppliers";
   public static readonly Companies = "api/brands";
+  public static readonly Brands = "api/brands";
+  public static readonly Colors = "api/colors";
+  public static readonly Sizes = "api/sizes";
   public static readonly ProductCategories = "api/ProductCategories";
   public static readonly Customers = "api/Customers";
   public static readonly Products = "api/products";

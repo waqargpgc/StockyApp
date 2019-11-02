@@ -48,7 +48,6 @@ export class AddUserComponent implements OnInit {
       this.modalHeader = 'Update User';
       this.submitButton = 'update'
     }
-
     this.initRoles();
   }
 

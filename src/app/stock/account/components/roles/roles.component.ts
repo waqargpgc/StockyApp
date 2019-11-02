@@ -2,19 +2,9 @@ import { AccountService } from "./../../../../services/account.service";
 import { Component, OnInit, ElementRef, Renderer, Input } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
-import { RoleDetailComponent } from "./role-detail/role-detail.component";
 import { PermissionGroup, PaginationModel } from "./../../../../models/common";
 
-import {
-  map,
-  filter,
-  pluck,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap,
-  take
-} from "rxjs/operators";
+import {map,filter,pluck,debounceTime,distinctUntilChanged,switchMap,tap,take} from "rxjs/operators";
 import { Observable, throwError, fromEvent, from } from "rxjs";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
@@ -22,6 +12,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
   templateUrl: "roles.component.html"
 })
 export class RolesComponent implements OnInit {
+  public roleDetailModal
   public roles: any[] = [];
 
   public paginationModel: PaginationModel = new PaginationModel();
@@ -32,6 +23,7 @@ export class RolesComponent implements OnInit {
   public Roleform: FormGroup;
   rolename: any = "";
   roleId: any = "";
+  roleInfo: any = {};
 
   constructor(
     fb: FormBuilder,
@@ -258,7 +250,19 @@ export class RolesComponent implements OnInit {
       }
     });
   }
-
+  getRoleInfo(role): void {
+    // const id = this.route.snapshot.paramMap.get('id');
+     let req$ = this.accountService.getSingleRole(role.id);
+     req$.subscribe(
+         (resp) => {
+             this.roleInfo = resp.data;
+             //this.roleDetailModal.show();
+         },
+         (err: HttpErrorResponse) => {
+             this.accountService.handleError(err);
+         }
+     )
+ }
   
 
   onPageChange(event) {
@@ -270,13 +274,5 @@ export class RolesComponent implements OnInit {
     this.paginationModel = respData;
   }
 
-  // openRoleDetailModal(role) {
-  //   const modalRef = this._modalService.open(
-  //     RoleDetailComponent,
-  //     this.ngbModalOptions
-  //   );
-  //   modalRef.componentInstance.role = {
-  //     roleId: role.id
-  //   };
-  // }
+  
 }

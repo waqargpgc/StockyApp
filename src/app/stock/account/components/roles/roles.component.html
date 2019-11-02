@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-sm">
                                 <thead class="thead-light text-center">
                                     <tr>
                                         <th>Name</th>
@@ -42,7 +42,7 @@
                                             </span>
                                             <span class="pointer">
                                             <!-- routerLink="./{{role.name}openRoleDetailModal}" -->
-                                            <i class="fa fa-eye" (click)="openRoleDetailModal(role)" style="color:black;"
+                                            <i class="fa fa-eye" (click)="getRoleInfo(role);roleDetailModal.show();" style="color:black;"
                                               tooltip="View Role"> </i>
                                           </span>
                                         </td>
@@ -57,7 +57,8 @@
                                     <tr>
                                         <td colspan="6">
                                           <strong class="text-primary pull-left mt-2">Total = {{paginationModel.totalRecords | number}}</strong>
-                                          <pagination [totalItems]="paginationModel.totalRecords" (pageChanged)="onPageChange($event)"></pagination>
+                                          <pagination  class="pull-right" [totalItems]="paginationModel.totalRecords" (pageChanged)="onPageChange($event)" [boundaryLinks]="true"
+                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -109,7 +110,7 @@
                         </div>
                         <div class="pull-right mt-4 mb-1">
                             <button type="button" class="btn btn-sm btn-success mr-3" [disabled]="!Roleform.valid" (click)="AddOrUpdateRole(submitButton)">
-                {{submitButton}} </button>
+                              {{submitButton}} </button>
                             <button type="button" class="btn btn-sm btn-danger" (click)="Cancel()">Close</button>
                         </div>
 
@@ -121,3 +122,36 @@
     </div>
 </div>
 <!--end list role -->
+<!-- Modal -->
+<div bsModal #roleDetailModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Role Details</h5>
+        <button type="button" class="close" (click)="roleDetailModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row">
+        <div class="col-md-12 col-sm-12">
+            <h3 class="text-center">Role: &nbsp;{{roleInfo?.displayName}} </h3>
+        </div>
+        <div *ngIf="roleInfo?.claims==''" class="col-md-12 col-sm-12">
+            <h5 class="text-center">this user have no permission</h5>
+        </div>
+        <div class="col-md-4 shadow-sm pb-4 pt-4" *ngFor="let grp of roleInfo?.claims">
+            <h5>{{grp.group}}</h5>
+            <div *ngFor="let permission of grp.permissions ">
+                <span placement="right" tooltip="{{permission?.description}} ">
+                {{permission?.name}}
+            </span>
+            </div>
+        </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="roleDetailModal.hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
