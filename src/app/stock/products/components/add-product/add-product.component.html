@@ -5,7 +5,7 @@
         <h5>Add Product</h5>
         <!-- <label for="">SEARCH BY location NAME</label> -->
       </div>
-      <button class="btn btn-sm btn-square btn-primary pull-right ml-1" type="button" (click)="createCategory()">
+      <button class="btn btn-sm btn-square btn-primary pull-right ml-1" type="button" (click)="createProduct()">
         <span class="fa fa-plus"></span> &nbsp; Save
       </button>
 
@@ -40,25 +40,102 @@
                   </small>
                 </div>
               </div>
-
-              <div class="form-group">
-                <label for="category" class="d-block">
-                  <span class="pull-left">Category</span>
-                </label>
-                <select class="form-control" name="category" id="category" [(ngModel)]="productObj.productCategoryId"
-                  aria-describedby="area-category">
-                  <option *ngFor="let item of productCategoryListObs" [value]="item.id"> {{ item.name }}
-                  </option>
-                </select>
-                <small id="area-category" class="form-text text-muted">
-                  Create your own categories to classify your products.
-                  <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal" (click)="categoryModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
-                  </button>
-                </small>
-              </div>
-
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                  <label for="brand" class="d-block">
+                    <span class="pull-left">Brand</span>
+                    <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+                      (click)="brandModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                    </button>
+                  </label>
+                  <select class="form-control" name="brand" id="brand" [(ngModel)]="productObj.productBrandId">
+                      <option>Select Product Brand</option>
+                    <option *ngFor="let item of productBrandListObs" [value]="item.id"> {{ item.name }}</option>
+                  </select>
+                  <small class="form-text text-muted">
+                    Create your own brand to classify your products.
+                  </small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="category" class="d-block">
+                    <span class="pull-left">Category</span>
+                    <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+                      (click)="categoryModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                    </button>
+                  </label>
+                  <select class="form-control" name="category" id="category" [(ngModel)]="productObj.productCategoryId">
+                    <option>Select Product Category</option>
+                    <option *ngFor="let item of productCategoryListObs" [value]="item.id"> {{ item.name }}</option>
+                  </select>
+                  <small class="form-text text-muted">
+                    Create your own categories to classify your products.
+                  </small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="supplier" class="d-block">
+                    <span class="pull-left">Supplier</span>
+                    <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+                      (click)="supplier.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                    </button>
+                  </label>
+                  <select class="form-control" name="supplier" id="supplier" [(ngModel)]="productObj.productSupplierId">
+                    <option>Select Product Supplier</option>
+                    <option *ngFor="let item of productSupplierListObs" [value]="item.id"> {{ item.name }}</option>
+                  </select>
+                  <small class="form-text text-muted">
+                    Create your own supplier to classify your products.
+                  </small>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="location" class="d-block">
+                    <span class="pull-left">Location</span>
+                    <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+                      (click)="LocationModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                    </button>
+                  </label>
+                  <select class="form-control" name="location" id="location" [(ngModel)]="productObj.productLocationId">
+                    <option>Select Product Location</option>
+                    <option *ngFor="let item of productLocationListObs" [value]="item.id"> {{ item.name }}</option>
+                  </select>
+                  <small class="form-text text-muted">
+                    Add location to your products.
+                  </small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="size" class="d-block">
+                    <span class="pull-left">Size</span>
+                    <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+                      (click)="sizeModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                    </button>
+                  </label>
+                  <select class="form-control" name="size" id="size" [(ngModel)]="productObj.productSizeId">
+                    <option>Select Product Size</option>
+                    <option *ngFor="let item of productSizeListObs" [value]="item.id"> {{ item.name }}</option>
+                  </select>
+                  <small class="form-text text-muted">
+                    Create your own size i.e medium or small.
+                  </small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="color" class="d-block">
+                    <span class="pull-left">Color</span>
+                    <button class="btn btn-outline-info btn-sm round-small-btn pull-right" data-toggle="modal"
+                      (click)="colorModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
+                    </button>
+                  </label>
+                  <select class="form-control" name="color" id="color" [(ngModel)]="productObj.productColorId">
+                    <option>Select Product Color</option>
+                    <option *ngFor="let item of productColorListObs" [value]="item.id"> {{ item.name }}</option>
+                  </select>
+                  <small class="form-text text-muted">
+                    Add color to your products.
+                  </small>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
                   <label for="buyingPrice">Buying Price</label>
                   <input type="text" id="buyingPrice" name="price" [(ngModel)]="productObj.buyingPrice"
                     class="form-control" aria-describedby="area-buyingPrice">
@@ -67,7 +144,7 @@
                   </small>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label for="sellingPrice">Selling Price</label>
                   <input type="text" id="sellingPrice" name="sellingPrice" [(ngModel)]="productObj.sellingPrice"
                     class="form-control" aria-describedby="area-sellingPrice">
@@ -75,10 +152,7 @@
                     Estimated selling price of a product.
                   </small>
                 </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label for="SKU"> Stock keeping unit </label>
                   <input type="text" [(ngModel)]="productObj.sKU" class="form-control" name="SKU" id="SKU"
                     placeholder="" aria-describedby="area-SKU">
@@ -86,7 +160,9 @@
                     Stock Keeping Unit. Uniquely identifies a product internally.
                   </small>
                 </div>
+              </div>
 
+              <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="UPC"> Universal product code </label>
                   <input type="text" [(ngModel)]="productObj.uPC" class="form-control" name="UPC" id="UPC"
@@ -95,9 +171,6 @@
                     Universal product code. Uniquely identifies a product externally.
                   </small>
                 </div>
-              </div>
-
-              <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="minStockLevel"> Min Stock Level </label>
                   <input type="text" [(ngModel)]="productObj.minStockLevel" class="form-control" name="minStockLevel"
@@ -155,7 +228,7 @@
               </div>
             </tab>
 
-            <tab>
+            <!-- <tab>
               <ng-template tabHeading> URL </ng-template>
 
               <div class="form-group">
@@ -166,7 +239,7 @@
                   URL of a product's page.
                 </small>
               </div>
-            </tab>
+            </tab> -->
 
             <tab>
               <ng-template tabHeading> Logistics </ng-template>
@@ -183,10 +256,10 @@
 
               <div class="form-group">
                 <label for="barcodeNumber"> Barcode Number </label>
-                <input type="text" [(ngModel)]="productObj.barcodeNumber" class="form-control" name="barcodeNumber" id="barcodeNumber"
-                  placeholder="" aria-describedby="area-barcodeNumber">
+                <input type="text" [(ngModel)]="productObj.barcodeNumber" class="form-control" name="barcodeNumber"
+                  id="barcodeNumber" placeholder="" aria-describedby="area-barcodeNumber">
                 <small id="barcodeNumber" class="form-text text-muted">
-                    1120103127459 etc.
+                  1120103127459 etc.
                 </small>
               </div>
             </tab>
@@ -214,34 +287,212 @@
   <div class="modal-dialog modal-info modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="area-category-modal">Product Category</h5>
+        <h5 class="modal-title">Add Product Category</h5>
         <button type="button" class="close" (click)="categoryModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="inputEmail4"> Name. <span class="required">*</span> </label>
-          <input type="email" name="name" [(ngModel)]="productCategoryObj.name" class="form-control" id="inputEmail4"
-            placeholder="" aria-describedby="NameField">
-          <small id="NameField" class="form-text text-muted">
+          <label for="name"> Name. <span class="required">*</span> </label>
+          <input type="text" name="name" [(ngModel)]="productCategoryObj.name" class="form-control" id="name">
+          <small class="form-text text-muted">
             Product name, cannot be longer than 50 characters.
           </small>
         </div>
-
         <div class="form-group">
-          <label for="inputPassword4">Description</label>
-          <input type="text" id="inputPassword5" name="desc" [(ngModel)]="productCategoryObj.description"
-            class="form-control" aria-describedby="passwordHelpBlock">
-          <small id="passwordHelpBlock" class="form-text text-muted">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="desc" [(ngModel)]="productCategoryObj.description"
+            class="form-control">
+          <small class="form-text text-muted">
             Product description, cannot be longer than 255 characters.
           </small>
         </div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="categoryModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary"(click)="categoryModal.hide()" (click)="addProductCategory()"> Save </button>
+        <button type="button" class="btn btn-primary" (click)="categoryModal.hide()" (click)="addDropdownItems('category')">
+          Save </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div bsModal #sizeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Product Size</h5>
+        <button type="button" class="close" (click)="sizeModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="name"> Name. <span class="required">*</span> </label>
+          <input type="text" name="name" [(ngModel)]="productSizeObj.name" class="form-control" id="name">
+          <small class="form-text text-muted">
+            Product Size, large,medium,small etc.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="desc" [(ngModel)]="productSizeObj.description"
+            class="form-control">
+          <small class="form-text text-muted">
+            Size description, cannot be longer than 255 characters.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="sizeModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="sizeModal.hide()" (click)="addDropdownItems('size')">
+          Save </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div bsModal #locationModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Product Location</h5>
+        <button type="button" class="close" (click)="locationModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="name"> Name. <span class="required">*</span> </label>
+          <input type="email" name="name" [(ngModel)]="productLocationObj.name" class="form-control" id="name">
+          <small id="NameField" class="form-text text-muted">
+            Location name, cannot be longer than 50 characters.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="desc" [(ngModel)]="productLocationObj.description"
+            class="form-control">
+          <small class="form-text text-muted">
+            Location description, cannot be longer than 255 characters.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="locationModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="locationModal.hide()" (click)="addDropdownItems('location')">
+          Save </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div bsModal #colorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Product Color</h5>
+        <button type="button" class="close" (click)="colorModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="color"> Name. <span class="required">*</span> </label>
+          <input type="text" name="name" [(ngModel)]="productColorObj.name" class="form-control" id="color">
+          <small id="NameField" class="form-text text-muted">
+              color name, cannot be longer than 50 characters.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword4">Description</label>
+          <input type="text" id="inputPassword5" name="desc" [(ngModel)]="productColorObj.description"
+            class="form-control">
+          <small id="description" class="form-text text-muted">
+            color description, cannot be longer than 255 characters.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="colorModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="colorModal.hide()" (click)="addDropdownItems('color')">
+          Save </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div bsModal #brandModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="area-category-modal">Add Product Brand</h5>
+        <button type="button" class="close" (click)="categoryModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="name"> Name. <span class="required">*</span> </label>
+          <input type="text" name="name" [(ngModel)]="productBrandObj.name" class="form-control" id="name">
+          <small  class="form-text text-muted">
+            Product brand, cannot be longer than 50 characters.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="desc" [(ngModel)]="productBrandObj.description"
+            class="form-control">
+          <small class="form-text text-muted">
+            brand description, cannot be longer than 255 characters.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="brandModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="brandModal.hide()" (click)="addDropdownItems('brand')">
+          Save </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div bsModal #supplierModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="area-category-modal">Add Product Supplier</h5>
+        <button type="button" class="close" (click)="supplierModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="name"> Name. <span class="required">*</span> </label>
+          <input type="text" name="name" [(ngModel)]="productSupplierObj.name" class="form-control" id="name">
+          <small class="form-text text-muted">
+            Product supplier, cannot be longer than 50 characters.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword4">Description</label>
+          <input type="text" id="description" name="desc" [(ngModel)]="productSupplierObj.description"
+            class="form-control">
+          <small class="form-text text-muted">
+            Product description, cannot be longer than 255 characters.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="supplierModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="supplierModal.hide()" (click)="addDropdownItems('supplier')">
+          Save </button>
       </div>
     </div>
   </div>

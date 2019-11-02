@@ -13,8 +13,8 @@ export class Product extends BaseModel {
     uPC: string; // Universal Product Code
     sNO: string; // Serial Numbers separated with comma
     tags: string;
-    barcodeNumber: string;
-    barcodeSystem: string;
+    barcodeNumber: string = '1';
+    barcodeSystem: string= '1';
     color: string;
     productPageURL: string;
     depth: number;
