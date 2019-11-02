@@ -1,4 +1,4 @@
-import {BaseModel} from '../index';
+import { BaseModel } from './base_model';
 
 export class TransactionHistory extends BaseModel {
     type: string;

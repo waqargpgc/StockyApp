@@ -1,4 +1,5 @@
-import {BaseModel, Location, Product} from '../index';
+import { BaseModel } from './base_model';
+import { Product } from './product';
 
 export class Stock extends BaseModel {
     quantity: number;

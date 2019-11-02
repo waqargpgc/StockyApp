@@ -1,4 +1,8 @@
-import { BaseModel, Inventory, PurchaseOrder, Staff, Stock } from '../index';
+import { BaseModel } from './base_model';
+import { Inventory } from './inventory';
+import { PurchaseOrder } from './purchase_order';
+import { Stock } from './stock';
+import { Staff } from './staff';
 
 export class Location extends BaseModel {
   name: string;

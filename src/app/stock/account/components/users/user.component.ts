@@ -42,6 +42,7 @@ export class UserComponent implements OnInit {
     let req$ = this.accountService.getUsers(page, pageSize, searchQry);
     req$.subscribe(
       (resp: any) => {
+        debugger
         this.uersList = resp.data.results;
         this.paginationModel.totalRecords = resp.data.totalRecords;
 

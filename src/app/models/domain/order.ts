@@ -1,4 +1,6 @@
-import { BaseModel, OrderStatus, OrderDetail} from '../index';
+import { BaseModel } from './base_model';
+import { OrderStatus } from './order_status';
+import { OrderDetail } from './order_detail';
 
 
 export class Order extends BaseModel {

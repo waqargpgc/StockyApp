@@ -9,6 +9,8 @@ import { ProductsComponent } from "./components/products/products.component";
 import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
+// Modal Component
+import { ModalModule } from 'ngx-bootstrap/modal';
 const routes: Routes = [
   {
     path: "",
@@ -32,8 +34,9 @@ const routes: Routes = [
     ChartsModule,
     SharedModule,
     BsDropdownModule,
+    ModalModule,
     RouterModule.forChild(routes),
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
   ],
   declarations: [ProductsComponent, AddProductComponent]
 })

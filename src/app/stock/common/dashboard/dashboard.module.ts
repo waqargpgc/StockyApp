@@ -9,7 +9,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { InfoComponent } from '../info/info.component';
 import { CommonModule } from '@angular/common';
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+
+{
+  path: "",
+  component: DashboardComponent,
+  data: { title: "Dashboard" }
+},
   { path: "play", component: InfoComponent }
 ];
 @NgModule({

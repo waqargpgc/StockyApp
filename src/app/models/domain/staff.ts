@@ -1,4 +1,4 @@
-import {BaseModel, Location} from '../index';
+import { BaseModel } from './base_model';
 
 export class Staff extends BaseModel {
     name: string;

@@ -1,4 +1,5 @@
-import { BaseModel, SaleOrder} from '../index';
+import { BaseModel } from './base_model';
+import { SaleOrder } from './sale_order';
 
 export class Customer extends BaseModel {
     name: string;
