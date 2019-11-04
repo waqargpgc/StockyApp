@@ -13,7 +13,7 @@ export class Location extends BaseModel {
   city: string;
   state: string;
   zipCode: string;
-
+  description:string;
   inventories: Inventory[];
   purchaseOrders: PurchaseOrder[];
   stocks: Stock[];

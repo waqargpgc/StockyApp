@@ -57,18 +57,19 @@
 
                                 </tbody>
                                 <tfoot>
-                                <!-- <tr *ngIf="supplierList.length == 0">
+                                 <tr *ngIf="customerList.length == 0">
                                     <td colspan="9">
                                         <p>There is no recods to show</p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="6">
-                                        <strong class="text-primary pull-left mt-2">Total = {{totalElements | number}}</strong>
-                                        <ngb-pagination class="pull-right" [collectionSize]="totalElements" [maxSize]="5" [pageSize]="pageSize" [(page)]="page" [boundaryLinks]="true" (pageChange)="onPageChange($event)">
-                                        </ngb-pagination>
+                                    <td colspan="8">
+                                            <!-- (pageChanged)="onPageChange($event)" -->
+                                        <strong class="text-primary pull-left mt-2">Total = {{paginationModel.totalRecords| number}}</strong>
+                                        <pagination  class="pull-right" [totalItems]="paginationModel.totalRecords" [boundaryLinks]="true"
+                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
                                     </td>
-                                </tr> -->
+                                </tr>
                           </tfoot>
 
                             </table>

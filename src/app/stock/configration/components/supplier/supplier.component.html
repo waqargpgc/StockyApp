@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table sm table-striped">
                                 <thead class="thead-light text-center">
                                     <tr>
                                         <th>First Name</th>
@@ -53,18 +53,19 @@
 
                                 </tbody>
                                 <tfoot>
-                                <!-- <tr *ngIf="supplierList.length == 0">
+                                 <tr *ngIf="supplierList.length == 0">
                                     <td colspan="9">
                                         <p>There is no recods to show</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="6">
-                                        <strong class="text-primary pull-left mt-2">Total = {{totalElements | number}}</strong>
-                                        <ngb-pagination class="pull-right" [collectionSize]="totalElements" [maxSize]="5" [pageSize]="pageSize" [(page)]="page" [boundaryLinks]="true" (pageChange)="onPageChange($event)">
-                                        </ngb-pagination>
+                                            <!-- (pageChanged)="onPageChange($event)" -->
+                                        <strong class="text-primary pull-left mt-2">Total = {{totalElements| number}}</strong>
+                                        <pagination  class="pull-right" [totalItems]="totalElements" [boundaryLinks]="true"
+                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
                                     </td>
-                                </tr> -->
+                                </tr> 
                           </tfoot>
                             </table>
                         </div>

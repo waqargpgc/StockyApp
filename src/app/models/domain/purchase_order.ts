@@ -15,6 +15,7 @@ export class PurchaseOrder extends BaseModel {
     locationId: string;
 
     supplier: Supplier;
+    suplierId: string;
     location: Location;
     purchaseOrderItems: PurchaseOrderItem[];
   }

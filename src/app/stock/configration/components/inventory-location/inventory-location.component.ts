@@ -100,10 +100,8 @@ export class InventoryLocationComponent implements OnInit {
 
   async GetInventoryLocations(page, pageSize, searchQry = "") {
     searchQry = searchQry || this.Search;
-
     // let req$ = this.InvLocationService.getAll(page, pageSize, searchQry);
     let req$ = this.invLocationService.list();
-
     try {
       this.inventoryList=  await this.invLocationService.getResponseFromSource(req$);
 

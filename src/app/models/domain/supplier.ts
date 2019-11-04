@@ -13,6 +13,7 @@ export class Supplier extends BaseModel {
     city: string;
     state: string;
     zipCode: string;
+    description: string;
     purchaseOrders: PurchaseOrder[];
     productSuppliers: ProductSupplier[];
   }

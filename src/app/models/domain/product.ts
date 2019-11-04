@@ -29,6 +29,11 @@ export class Product extends BaseModel {
     sellingPrice: number;
     isDiscontinued: boolean;
     inventoryLocationId: string;
+    productBrandId:string;
+    productSupplierId:string;
+    productLocationId:string;
+    productSizeId:string;
+    productColorId:string;
     parentId: string;
     supplierId: string;
     productCategoryId: string;

@@ -60,8 +60,9 @@
                                   </tr>
                                   <tr>
                                       <td colspan="9">
-                                          <strong class="text-primary pull-left mt-2">Total = {{paginationModel.totalRecords | number}}</strong>
-                                          <pagination [totalItems]="paginationModel.totalRecords" (pageChanged)="onPageChange($event)"></pagination>
+                                            <strong class="text-primary pull-left mt-2">Total = {{paginationModel.totalRecords| number}}</strong>
+                                        <pagination  class="pull-right" [totalItems]="paginationModel.totalRecords" (pageChanged)="onPageChange($event)" [boundaryLinks]="true"
+                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
                                       </td>
                                   </tr>
                               </tfoot>
