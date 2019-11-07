@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-    public productService: ProductService) { }
+    public productService: ProductService,private router:Router) { }
 
   ngOnInit() {
     this.getProducts(this.page, this.pageSize);
@@ -90,10 +90,7 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  Update(item: any) {
-    this.productObj = item;
-
-    this.modalHeader = "Update Supplier";
-    this.submitButton = "update";
+  Update(id: any) {
+    this.router.navigate(['/products/add', {id:id}]);
   }
 }

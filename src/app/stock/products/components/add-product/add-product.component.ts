@@ -4,6 +4,7 @@ import { ProductService, BrandService, SizeService, LocationService, ColorServic
 import { ProductCategoryService } from './../../../../services/app.services';
 import { Observable } from 'rxjs';
 import { ApiEndPoints } from '../../../../models/constants';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: "stk-add-product",
   templateUrl: "./add-product.component.html",
@@ -17,6 +18,8 @@ export class AddProductComponent implements OnInit {
   public supplierModal;
   public colorModal;
   public brandModal;
+  public ProducttId;
+  private subr:any;
   productEp = ApiEndPoints.Products;
   productCategoryObj: ProductCategory;
   productBrandObj: Brand;
@@ -39,8 +42,17 @@ export class AddProductComponent implements OnInit {
     private prodColorSvc: ColorService,
     private prodBrandSvc: BrandService,
     private prodSupplierSvc: SupplierService,
-  ) { }
+    private route: ActivatedRoute
+  ) {
+    this.subr = this.route.params.subscribe(params => {
+      this.ProducttId = params['id'];
+   });
+   }
   ngOnInit() {
+    
+   if(this.ProducttId){
+    this.GetOneProduct();
+   }
     this.productObj = new Product();
     this.productCategoryObj = new ProductCategory();
     this.productBrandObj = new Brand();
@@ -49,7 +61,6 @@ export class AddProductComponent implements OnInit {
     this.productColorObj = new Color();
     this.productSupplierObj = new Supplier();
     this.productObj = new Product();
-
     this.loadDropDowns();
   }
 
@@ -118,8 +129,12 @@ export class AddProductComponent implements OnInit {
   }
   createProduct() {
     // todo:  Add validation constraints
-    let req$ = this.productService.create(this.productObj, this.productEp);
-    req$.subscribe(
+    if(!this.ProducttId){
+      var request$ = this.productService.create(this.productObj, this.productEp);
+    }else{
+      var request$ = this.productService.update(this.productObj, this.productEp);  
+    }
+    request$.subscribe(
       resp => {
         console.log(resp);
       },
@@ -127,7 +142,18 @@ export class AddProductComponent implements OnInit {
         this.productService.handleError(err)
       })
   }
-
+  GetOneProduct(){
+    debugger
+    let req$ = this.productService.get(this.ProducttId, this.productEp);  
+    req$.subscribe(
+    resp => {
+      this.productObj = resp;
+      console.log(resp);
+    },
+    err => {
+      this.productService.handleError(err)
+    })
+}
   upload(files) {
     //   if (files.length === 0) return;
     //   const formData = new FormData();
@@ -138,5 +164,7 @@ export class AddProductComponent implements OnInit {
     //   req.subscribe(event => {
     //   })
   }
-
+  ngOnDestroy() {
+    this.subr.unsubscribe();
+  }
 }

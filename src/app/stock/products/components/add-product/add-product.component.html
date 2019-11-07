@@ -48,7 +48,7 @@
                       (click)="brandModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                     </button>
                   </label>
-                  <select class="form-control" name="brand" id="brand" [(ngModel)]="productObj.productBrandId">
+                  <select class="form-control" name="brand" id="brand" [(ngModel)]="productObj.brandId">
                     <option>Select Product Brand</option>
                     <option *ngFor="let item of productBrandListObs" [value]="item.id"> {{ item.name }}</option>
                   </select>
@@ -78,7 +78,7 @@
                       (click)="supplierModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                     </button>
                   </label>
-                  <select class="form-control" name="supplier" id="supplier" [(ngModel)]="productObj.productSupplierId">
+                  <select class="form-control" name="supplier" id="supplier" [(ngModel)]="productObj.supplierId">
                     <option>Select Product Supplier</option>
                     <option *ngFor="let item of productSupplierListObs" [value]="item.id"> {{ item.name }}</option>
                   </select>
@@ -95,7 +95,7 @@
                       (click)="locationModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                     </button>
                   </label>
-                  <select class="form-control" name="location" id="location" [(ngModel)]="productObj.productLocationId">
+                  <select class="form-control" name="location" id="location" [(ngModel)]="productObj.locationId">
                     <option>Select Product Location</option>
                     <option *ngFor="let item of productLocationListObs" [value]="item.id"> {{ item.name }}</option>
                   </select>
@@ -110,7 +110,7 @@
                       (click)="sizeModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                     </button>
                   </label>
-                  <select class="form-control" name="size" id="size" [(ngModel)]="productObj.productSizeId">
+                  <select class="form-control" name="size" id="size" [(ngModel)]="productObj.sizeId">
                     <option>Select Product Size</option>
                     <option *ngFor="let item of productSizeListObs" [value]="item.id"> {{ item.name }}</option>
                   </select>
@@ -125,7 +125,7 @@
                       (click)="colorModal.show()" title="Add new"> <span class="fa fa-plus small"></span>
                     </button>
                   </label>
-                  <select class="form-control" name="color" id="color" [(ngModel)]="productObj.productColorId">
+                  <select class="form-control" name="color" id="color" [(ngModel)]="productObj.colorId">
                     <option>Select Product Color</option>
                     <option *ngFor="let item of productColorListObs" [value]="item.id"> {{ item.name }}</option>
                   </select>
