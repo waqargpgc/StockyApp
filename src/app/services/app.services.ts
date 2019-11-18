@@ -13,7 +13,6 @@ export class ProductService extends HttpBaseService {
     super(httpClient, new HttpSetup(ApiEndPoints.Products, ApiEndPoints.ApiRoot));
   }
 }
-
 // InventoryService
 @Injectable({
   providedIn: 'root'
@@ -39,7 +38,7 @@ export class CustomerService extends HttpBaseService {
   providedIn: 'root'
 })
 export class InventoryLocationService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.Locations, ApiEndPoints.ApiRoot));
   }
 }
@@ -59,7 +58,7 @@ export class InventoryLocationService extends HttpBaseService {
   providedIn: 'root'
 })
 export class ManufacturerService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.Companies, ApiEndPoints.ApiRoot));
   }
 }
@@ -69,7 +68,7 @@ export class ManufacturerService extends HttpBaseService {
   providedIn: 'root'
 })
 export class ProductCategoryService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.ProductCategories, ApiEndPoints.ApiRoot));
   }
 }
@@ -78,7 +77,7 @@ export class ProductCategoryService extends HttpBaseService {
   providedIn: 'root'
 })
 export class SizeService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.Sizes, ApiEndPoints.ApiRoot));
   }
 }
@@ -87,7 +86,7 @@ export class SizeService extends HttpBaseService {
   providedIn: 'root'
 })
 export class LocationService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.Locations, ApiEndPoints.ApiRoot));
   }
 }
@@ -96,7 +95,7 @@ export class LocationService extends HttpBaseService {
   providedIn: 'root'
 })
 export class SupplierService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.Suppliers, ApiEndPoints.ApiRoot));
   }
 }
@@ -105,7 +104,7 @@ export class SupplierService extends HttpBaseService {
   providedIn: 'root'
 })
 export class ColorService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.Colors, ApiEndPoints.ApiRoot));
   }
 }
@@ -114,7 +113,7 @@ export class ColorService extends HttpBaseService {
   providedIn: 'root'
 })
 export class BrandService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.Brands, ApiEndPoints.ApiRoot));
   }
 }
@@ -123,7 +122,7 @@ export class BrandService extends HttpBaseService {
   providedIn: 'root'
 })
 export class PurchaseOrderService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.PurchaseOrders, ApiEndPoints.ApiRoot));
   }
 }
@@ -133,8 +132,8 @@ export class PurchaseOrderService extends HttpBaseService {
   providedIn: 'root'
 })
 export class PurchaseOrderItemService extends HttpBaseService {
-  constructor(httpClient: HttpClient ) {
+  constructor(httpClient: HttpClient) {
     super(httpClient, new HttpSetup(ApiEndPoints.PurchaseOrderItems, ApiEndPoints.ApiRoot));
   }
-  
+
 }

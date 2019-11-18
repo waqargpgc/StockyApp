@@ -19,7 +19,7 @@ export class AddProductComponent implements OnInit {
   public colorModal;
   public brandModal;
   public ProducttId;
-  private subr:any;
+  private subr: any;
   productEp = ApiEndPoints.Products;
   productCategoryObj: ProductCategory;
   productBrandObj: Brand;
@@ -46,13 +46,13 @@ export class AddProductComponent implements OnInit {
   ) {
     this.subr = this.route.params.subscribe(params => {
       this.ProducttId = params['id'];
-   });
-   }
+    });
+  }
   ngOnInit() {
-    
-   if(this.ProducttId){
-    this.GetOneProduct();
-   }
+
+    if (this.ProducttId) {
+      this.GetOneProduct();
+    }
     this.productObj = new Product();
     this.productCategoryObj = new ProductCategory();
     this.productBrandObj = new Brand();
@@ -129,10 +129,10 @@ export class AddProductComponent implements OnInit {
   }
   createProduct() {
     // todo:  Add validation constraints
-    if(!this.ProducttId){
+    if (!this.ProducttId) {
       var request$ = this.productService.create(this.productObj, this.productEp);
-    }else{
-      var request$ = this.productService.update(this.productObj, this.productEp);  
+    } else {
+      var request$ = this.productService.update(this.productObj, this.productEp);
     }
     request$.subscribe(
       resp => {
@@ -142,18 +142,17 @@ export class AddProductComponent implements OnInit {
         this.productService.handleError(err)
       })
   }
-  GetOneProduct(){
-    debugger
-    let req$ = this.productService.get(this.ProducttId, this.productEp);  
+  GetOneProduct() {
+    let req$ = this.productService.get(this.ProducttId, this.productEp);
     req$.subscribe(
-    resp => {
-      this.productObj = resp;
-      console.log(resp);
-    },
-    err => {
-      this.productService.handleError(err)
-    })
-}
+      resp => {
+        this.productObj = resp;
+        console.log(resp);
+      },
+      err => {
+        this.productService.handleError(err)
+      })
+  }
   upload(files) {
     //   if (files.length === 0) return;
     //   const formData = new FormData();

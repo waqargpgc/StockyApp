@@ -9,23 +9,10 @@ import { ProductsComponent } from "./components/products/products.component";
 import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
-// Modal Component
 import { ModalModule } from 'ngx-bootstrap/modal';
 const routes: Routes = [
-  {
-    path: "",
-    component: ProductsComponent,
-    data: {
-      title: "Products"
-    }
-  },
-  {
-    path: "add",
-    component: AddProductComponent,
-    data: {
-      title: "Add Product"
-    }
-  }
+  {path: "",component: ProductsComponent,data: {title: "Products"}},
+  {path: "add",component: AddProductComponent,data: {title: "Add Product"}}
 ];
 @NgModule({
   imports: [
