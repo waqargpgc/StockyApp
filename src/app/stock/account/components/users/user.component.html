@@ -1,145 +1,165 @@
 <div class="animated fadeIn">
     <div class="card">
         <div class="card-header">
-            <h5 class="pull-left">User List</h5>
-            <button class="btn btn-sm btn-square btn-primary pull-right" type="button" (click)="openAddUserModal()">Add
-        Users</button>
+            <h5 class="pull-left">Users</h5>
+            <!-- <button class="btn btn-sm btn-square btn-primary pull-right" type="button" (click)="openAddUserModal()">Add
+                Users</button> -->
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-sm-12 mb-2">
-                            <input type="text" class="input-sm form-control" id="searchFilter" style="width:330px" placeholder="Filter BY NAME, EMAIL, USERNAME or CELL#">
-                            <!-- <label for="">Filter BY NAME, EMAIL, USERNAME or CELL#</label> -->
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    Users List
+                                    <div class="pull-right">
+                                        <input type="text" class="input-sm form-control" id="searchFilter"
+                                            style="width:330px" placeholder="Filter BY NAME, EMAIL, USERNAME or CELL#">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <!-- <label for="">Filter BY NAME, EMAIL, USERNAME or CELL#</label> -->
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-sm">
+                                            <thead class="thead-light text-center">
+                                                <tr>
+                                                    <th>First name</th>
+                                                    <th>Last name</th>
+                                                    <th>Email</th>
+                                                    <th>User Name</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let user of uersList;let i=index">
+                                                    <td>{{ user.firstName }}</td>
+                                                    <td>{{ user.lastName }}</td>
+                                                    <td>{{ user.email }}</td>
+                                                    <td>{{ user.userName }}</td>
+                                                    <td>
+                                                        <span *ngIf="user.isActive"
+                                                            class="badge badge-pill badge-success mr-1"
+                                                            style="font-size: .9em;">{{ user.isActive }}</span>
+                                                        <span *ngIf="!user.isActive"
+                                                            class="badge badge-pill badge-danger mr-1"
+                                                            style="font-size: .9em;">{{ user.isActive }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pointer">
+                                                            <i class="fa fa-trash mr-1" (click)="deleteUser(user)"
+                                                                placement="top" tooltip="Delete"></i>
+                                                        </span>
+                                                        <span class="pointer">
+                                                            <i class="fa fa-edit mr-1"
+                                                                (click)="openUpdateUserModal(user)" placement="top"
+                                                                tooltip="Update"></i>
+                                                        </span>
+                                                        <span class="pointer">
+                                                            <!-- routerLink="/account/manage/users/{{user.id}}" -->
+                                                            <i class="fa fa-eye" (click)="openRoleDetailModal(user)"
+                                                                placement="top" tooltip="View User"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr *ngIf="uersList.length == 0">
+                                                    <td colspan="9">
+                                                        <p>There is no recods to show</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="9">
+                                                        <strong class="text-primary pull-left mt-2">Total =
+                                                            {{paginationModel.totalRecords | number}}</strong>
+                                                        <pagination class="pull-right"
+                                                            [totalItems]="paginationModel.totalRecords"
+                                                            (pageChanged)="onPageChange($event)" [boundaryLinks]="true"
+                                                            previousText="&lsaquo;" nextText="&rsaquo;"
+                                                            firstText="&laquo;" lastText="&raquo;"></pagination>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    {{modalHeader}}
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group has-float-label col-sm-12">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" name="firstName"
+                                                [(ngModel)]="user.firstName">
+                                        </div>
+                                        <div class="form-group has-float-label col-sm-12">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" name="lastNamee"
+                                                [(ngModel)]="user.lastName">
+                                        </div>
+                                        <div class="form-group has-float-label col-sm-12">
+                                            <label>User Name</label>
+                                            <input type="email" class="form-control" name="userName"
+                                                [(ngModel)]="user.userName">
+                                        </div>
+
+                                        <div class="form-group has-float-label col-sm-12">
+                                            <label>Email Address</label>
+                                            <input type="email" class="form-control" name="email"
+                                                [(ngModel)]="user.email">
+                                        </div>
+
+                                        <div class="form-group has-float-label col-sm-12">
+                                            <label>Phone No</label>
+                                            <input type="tel" class="form-control" name="phone"
+                                                [(ngModel)]="user.phoneNumber">
+                                        </div>
+                                        <div class="form-group has-float-label col-sm-12">
+                                            <label> Roles </label>
+                                            <ng-select [items]="roleList | async" [multiple]="true"
+                                                [closeOnSelect]="false" [searchable]="true" bindLabel="displayName"
+                                                placeholder="Select Roles" [(ngModel)]="selectedRoleList">
+                                            </ng-select>
+                                        </div>
+                                        <div class="form-group has-float-label col-sm-12"
+                                            *ngIf="submitButton == 'update'">
+                                            <label for="UpPassword" placement="right" tooltip="Update Password">
+                                                <input type="checkbox" id="UpPassword" (click)="ShowPasswordFields()">
+                                                Update Password
+                                            </label>
+                                        </div>
+                                        <div class="form-group has-float-label col-sm-12"
+                                            *ngIf="ShowPassFields || submitButton != 'update'">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" name="password"
+                                                [(ngModel)]="user.password">
+                                        </div>
+                                        <div class="form-group has-float-label col-sm-12"
+                                            *ngIf="ShowPassFields || submitButton != 'update'">
+                                            <label>Confirm Password</label>
+                                            <input type="password" class="form-control" name="Cpassword"
+                                                [(ngModel)]="Cpassword" (blur)="ConfirmPass(Cpassword)">
+                                        </div>
+                                    </div>
+                                    <div class="pull-right mb-1">
+                                        <button type="button" class="btn btn-sm btn-success mr-3"
+                                            (click)="createOrupdateUser()">{{submitButton}} </button>
+                                        <button type="button" class="btn btn-sm btn-danger"
+                                            (click)="Cancel()">Close</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead class="thead-light text-center">
-                                <tr>
-                                    <th>First name</th>
-                                    <th>Last name</th>
-                                    <th>Email</th>
-                                    <th>User Name</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let user of uersList;let i=index">
-                                    <td>{{ user.firstName }}</td>
-                                    <td>{{ user.lastName }}</td>
-                                    <td>{{ user.email }}</td>
-                                    <td>{{ user.userName }}</td>
-                                    <td>
-                                        <span *ngIf="user.isActive" class="badge badge-pill badge-success mr-1" style="font-size: .9em;">{{ user.isActive }}</span>
-                                        <span *ngIf="!user.isActive" class="badge badge-pill badge-danger mr-1" style="font-size: .9em;">{{ user.isActive }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="pointer">
-                      <i class="fa fa-trash mr-1" (click)="deleteUser(user)" placement="top" tooltip="Delete"></i>
-                    </span>
-                                        <span class="pointer">
-                      <i class="fa fa-edit mr-1" (click)="openUpdateUserModal(user)" placement="top"
-                        tooltip="Update"></i>
-                    </span>
-                                        <span class="pointer">
-                      <!-- routerLink="/account/manage/users/{{user.id}}" -->
-                      <i class="fa fa-eye" (click)="openRoleDetailModal(user)" placement="top"
-                        tooltip="View User"></i>
-                    </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr *ngIf="uersList.length == 0">
-                                    <td colspan="9">
-                                        <p>There is no recods to show</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="9">
-                                        <strong class="text-primary pull-left mt-2">Total = {{paginationModel.totalRecords | number}}</strong>
-                                        <pagination  class="pull-right" [totalItems]="paginationModel.totalRecords" (pageChanged)="onPageChange($event)" [boundaryLinks]="true"
-                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal -->
-<div bsModal #roleDetailModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-info modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Role Details</h5>
-        <button type="button" class="close" (click)="roleDetailModal.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="form-group has-float-label col-md-6 col-sm-12">
-                <label>First Name</label>
-                <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName">
-            </div>
-            <div class="form-group has-float-label col-md-6 col-sm-12">
-                <label>Last Name</label>
-                <input type="text" class="form-control" name="lastNamee" [(ngModel)]="user.lastName">
-            </div>
-            <div class="form-group has-float-label col-md-6 col-sm-12">
-                <label>User Name</label>
-                <input type="email" class="form-control" name="userName" [(ngModel)]="user.userName">
-            </div>
-    
-            <div class="form-group has-float-label col-md-6 col-sm-12">
-                <label>Email Address</label>
-                <input type="email" class="form-control" name="email" [(ngModel)]="user.email">
-            </div>
-    
-            <div class="form-group has-float-label col-md-6 col-sm-12">
-                <label>Phone No</label>
-                <input type="tel" class="form-control" name="phone" [(ngModel)]="user.phoneNumber">
-            </div>
-            <div class="form-group has-float-label col-md-6 col-sm-12">
-                <label> Roles </label>
-                <ng-select [items]="roleList | async" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="displayName" placeholder="Select Roles" [(ngModel)]="selectedRoleList">
-                </ng-select>
-            </div>
-            <div class="form-group has-float-label col-md-12 col-sm-12" *ngIf="submitButton == 'update'">
-                <label for="UpPassword" placement="right" tooltip="Update Password">
-            <input type="checkbox" id="UpPassword" (click)="ShowPasswordFields()">
-            Update Password
-          </label>
-            </div>
-            <div class="form-group has-float-label col-md-6 col-sm-12" *ngIf="ShowPassFields || submitButton != 'update'">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="user.password">
-            </div>
-            <div class="form-group has-float-label col-md-6 col-sm-12" *ngIf="ShowPassFields || submitButton != 'update'">
-                <label>Confirm Password</label>
-                <input type="password" class="form-control" name="Cpassword" [(ngModel)]="Cpassword" (blur)="ConfirmPass(Cpassword)">
-            </div>
-        </div>
-    
-    
-        <!-- <button *ngIf="submitButton == 'update' && !ShowPassFields" type="button" style="font-size: .9em;" class="btn btn-sm badge badge-pill badge-success mr-2 mb-3" (click)="ShowPasswordFields()">Show Password Field</button>
-          <button *ngIf="submitButton == 'update' && ShowPassFields" type="button" style="font-size: .9em;" class="btn btn-sm badge badge-pill badge-danger mr-2 mb-3" (click)="ShowPasswordFields()">Hide Password Field</button> -->
-    </div>
-    
-    <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-success" (click)="createOrupdateUser()">{{submitButton}}</button>
-        <button type="button" class="btn btn-sm btn-danger">Close</button>
-    </div>
-    </div>
-  </div>
 </div>

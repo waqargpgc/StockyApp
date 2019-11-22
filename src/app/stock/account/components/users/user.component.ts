@@ -5,17 +5,7 @@ import { AccountService } from "./../../../../services/account.service";
 import { ToastrService } from "ngx-toastr";
 import { UserDetailComponent } from "./user-detail/user-detail.component";
 
-import {
-  map,
-  filter,
-  pluck,
-  auditTime,
-  distinctUntilChanged,
-  switchMap,
-  tap,
-  take,
-  debounceTime
-} from "rxjs/operators";
+import { map, filter, pluck, auditTime, distinctUntilChanged, switchMap, tap, take, debounceTime } from "rxjs/operators";
 import { Observable, throwError, fromEvent, from } from "rxjs";
 import { PaginationModel } from './../../../../models/common';
 
@@ -27,7 +17,7 @@ export class UserComponent implements OnInit {
   public selectedRoleList: any[] = [];
   uersList: any[] = [];
   public paginationModel: PaginationModel = new PaginationModel();
-  public user = {
+  public user: any = {
     userName: '',
     email: '',
     password: '',
@@ -38,7 +28,7 @@ export class UserComponent implements OnInit {
     designation: '',
     roles: [],
   }
-  @Input() OneUser:any = {};
+  @Input() OneUser: any = {};
   public modalHeader: string;
   public Cpassword: string;
   public submitButton: string;
@@ -50,17 +40,11 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers(this.paginationModel.currentPage, this.paginationModel.pageSize);
-   this.searchFilter();
-   if (this.OneUser.type == 'add') {
+    this.searchFilter();
     this.modalHeader = 'Add User';
     this.submitButton = 'Save';
-  }
-  else {
-    this.getSingleUserRecode();
-    this.modalHeader = 'Update User';
-    this.submitButton = 'update'
-  }
-  this.initRoles();
+
+    this.initRoles();
   }
 
   getUsers(page, pageSize, searchQry = "") {
@@ -85,7 +69,6 @@ export class UserComponent implements OnInit {
     let id = user.id;
     if (isConfirm && id) {
       let req$ = this.accountService.deleteUser(id);
-
       req$.subscribe(
         (resp: any) => {
           this.getUsers(this.paginationModel.currentPage, this.paginationModel.pageSize);
@@ -132,7 +115,7 @@ export class UserComponent implements OnInit {
   viewUserDetail(id: any) {
     console.log(id);
   }
-  
+
   createOrupdateUser() {
     let user = this.user;
     user.roles = this.selectedRoleList;
@@ -149,46 +132,47 @@ export class UserComponent implements OnInit {
 
       return;
     }
-    if (this.OneUser.type == 'add') {
-    let req$ = this.accountService.createUser(user);
-    req$.subscribe(
-      (resp: any) => {
-        this.toastr.success('Created', '');
-      },
-      (err: HttpErrorResponse) => this.accountService.handleError(err)
-    )
-  }else
-  {
-    let req$ = this.accountService.updateUser(user);
+    if (this.submitButton == 'Save') {
+      let req$ = this.accountService.createUser(user);
+      req$.subscribe(
+        (resp: any) => {
+          this.toastr.success('Created', '');
+          this.getUsers(this.paginationModel.currentPage, this.paginationModel.pageSize);
+          this.Cancel();
+        },
+        (err: HttpErrorResponse) => this.accountService.handleError(err)
+      )
+    } else {
+      let req$ = this.accountService.updateUser(user);
 
-    req$.subscribe(
-      (resp: any) => {
-        this.toastr.success('Updated', '');
-      },
-      (err: HttpErrorResponse) => this.accountService.handleError(err)
-    )
+      req$.subscribe(
+        (resp: any) => {
+          this.toastr.success('Updated', '');
+          this.getUsers(this.paginationModel.currentPage, this.paginationModel.pageSize);
+          this.Cancel();
+        },
+        (err: HttpErrorResponse) => this.accountService.handleError(err)
+      )
+    }
   }
-}
-getSingleUserRecode() {
-  let id =  this.OneUser.userId;
-  let req$ = this.accountService.getSingleUser(id);
-  req$.subscribe(
-    (resp) => {
+  getSingleUserRecode(id) {
+    let req$ = this.accountService.getSingleUser(id);
+    req$.subscribe(
+      (resp) => {
         this.user = resp.data;
         this.selectedRoleList = resp.data.roles;
-    },
-    (err: HttpErrorResponse) => {
+      },
+      (err: HttpErrorResponse) => {
         this.accountService.handleError(err);
-    }
-)
-}
+      }
+    )
+  }
   initRoles() {
     let req$ = this.accountService.getRolesForUser();
     req$ = req$.pipe(
       map((resp: any) => {
         let data = resp.data;
         let roles = [];
-
         data.forEach((r: any) => {
           let role: any = {};
           role.name = r.name;
@@ -203,18 +187,18 @@ getSingleUserRecode() {
 
     this.roleList = req$;
   }
-  ConfirmPass(value){
-    if(value != this.user.password){
+  ConfirmPass(value) {
+    if (value != this.user.password) {
       this.toastr.warning('Password and Confirm Password Are Mismatch');
       this.user.password = '';
       this.Cpassword = '';
     }
   }
-  ShowPasswordFields(){
-      this.ShowPassFields = !this.ShowPassFields;
+  ShowPasswordFields() {
+    this.ShowPassFields = !this.ShowPassFields;
   }
   onPageChange(event) {
-      this.paginationModel.currentPage = parseInt(event);
+    this.paginationModel.currentPage = parseInt(event);
     this.getUsers(this.paginationModel.currentPage, this.paginationModel.pageSize);
   }
 
@@ -223,38 +207,17 @@ getSingleUserRecode() {
     this.paginationModel = respData;
   }
 
-  // ngbModalOptionsSmall: NgbModalOptions = {
-  //   backdrop: "static",
-  //   keyboard: false,
-  //   size: "lg"
-  // };
-
-  openAddUserModal() {
-    // const modalRef = this._modalService.open(
-    //   AddUserComponent,
-    //   this.ngbModalOptionsSmall
-    // );
-    // modalRef.componentInstance.OneUser = {
-    //   type: "add"
-    // };
-    // modalRef.result.then(result => {
-    //   console.log(result);
-    //   this.getUsers(this.paginationModel.currentPage, this.paginationModel.pageSize);
-    // });
+  Cancel() {
+    this.user = {};
+    this.selectedRoleList = [];
+    this.modalHeader = "Add Roles";
+    this.submitButton = "Save";
   }
 
   openUpdateUserModal(user) {
-    // const modalRef = this._modalService.open(
-    //   AddUserComponent,
-    //   this.ngbModalOptionsSmall
-    // );
-    // modalRef.componentInstance.OneUser = {
-    //   type: "update",
-    //   userId: user.id
-    // };
-    // modalRef.result.then(result => {
-    //   this.getUsers(this.paginationModel.currentPage, this.paginationModel.pageSize);
-    // });
+    this.getSingleUserRecode(user.id);
+    this.modalHeader = 'Update User';
+    this.submitButton = 'update'
   }
   openRoleDetailModal(user) {
     // const modalRef = this._modalService.open(
