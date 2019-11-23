@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { AddUserComponent } from "./add-user/add-user.component";
 import { HttpErrorResponse } from "@angular/common/http";
 import { AccountService } from "./../../../../services/account.service";
 import { ToastrService } from "ngx-toastr";

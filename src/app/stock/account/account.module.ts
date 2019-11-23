@@ -12,7 +12,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RoleDetailComponent } from './components/roles/role-detail/role-detail.component';
 import { RolesComponent } from './components/roles/roles.component';
-import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { UserComponent } from './components/users/user.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -41,13 +40,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ProfileComponent,
     RolesComponent,
     RoleDetailComponent,
-    AddUserComponent,
     UserComponent,
     UserDetailComponent,
   ],
   entryComponents: [
     RoleDetailComponent,
-    AddUserComponent,
     UserDetailComponent
   ],
 })

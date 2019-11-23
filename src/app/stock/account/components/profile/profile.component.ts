@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { AccountService } from "./../../../../services/account.service";
 import { ToastrService } from "ngx-toastr";
 import { ApiEndPoints } from './../../../../models/constants';
-import { map } from 'rxjs/operators';
+
 
 @Component({
   templateUrl: "profile.component.html",

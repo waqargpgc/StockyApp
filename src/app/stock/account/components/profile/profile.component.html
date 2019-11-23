@@ -70,7 +70,8 @@
                                                 <div class="col-md-4">
                                                     <div class="text-center">
                                                         <div class="image-wrapper">
-                                                            <img [src]="avatarUrl" class="rounded-circle img-responsive mt-2" width="165" height="165">
+                                                            <img *ngIf="avatarUrl" [src]="avatarUrl" class="rounded-circle img-responsive mt-2" width="165" height="165">
+                                                            <img *ngIf="!avatarUrl" src="assets/img/avatar.png" class="rounded-circle img-responsive mt-2" width="165" height="165">
                                                         </div>
                                                         <br>
                                                         <div class="form-group">
