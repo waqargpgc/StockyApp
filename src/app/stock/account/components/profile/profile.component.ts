@@ -31,11 +31,13 @@ export class ProfileComponent implements OnInit {
 
   getUser() {
     let req$ = this.accountService.getCurrentUser();
-
     req$.subscribe(
-      (user: any) => this.user = user,
+      (resp: any) => {
+        this.user = resp;
+        localStorage.setItem("avatar", `${ApiEndPoints.ApiRoot}/${resp.avatarURL}`);
+      },
       (err: HttpErrorResponse) => this.accountService.handleError(err)
-    )
+    );
   }
 
   upload(files) {
@@ -103,6 +105,7 @@ export class ProfileComponent implements OnInit {
 
   imgPreview(eve) {
     this.avatarUrl = eve.target.src;
+    localStorage.setItem("avatar",this.avatarUrl);
   }
 
   async updateSelectedAvatar(img: any) {
@@ -111,7 +114,6 @@ export class ProfileComponent implements OnInit {
       let resp = await this.accountService.getResponseFromSource(req$);
       this.avatarUrl = `${ApiEndPoints.ApiRoot}/${resp.imageURL}`;
       this.toastr.success("Avatar updated", '');
-
       localStorage.setItem("avatar", `${ApiEndPoints.ApiRoot}/${resp.imageURL}`);
     } catch (error) {
 

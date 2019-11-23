@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AccountService } from './../../../../services/account.service';
 import { Router } from '@angular/router';
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { ApiEndPoints } from './../../../../models/constants';
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'login.component.html'
 })
 export class LoginComponent {
   password: any = "Pass@123";
-  username: any = "admin";
+  username: any = "superadmin";
 
-  constructor(public _authService: AccountService, private router: Router) 
+  constructor(public _authService: AccountService,public accountService:AccountService, private router: Router) 
   { 
 
   }
@@ -23,6 +24,7 @@ export class LoginComponent {
       resp => {
         let token = (<any>resp).token;
         localStorage.setItem("token", token);
+        this.getUser();
         this._authService.isLoginSubject.next(true);
 
        // this._authService.updateCurrentUser(true);
@@ -38,5 +40,13 @@ export class LoginComponent {
       }
     );
   }
-
+  getUser() {
+    let req$ = this.accountService.getCurrentUser();
+    req$.subscribe(
+      (resp: any) => {
+        localStorage.setItem("avatar", `${ApiEndPoints.ApiRoot}/${resp.avatarURL}`);
+      },
+      (err: HttpErrorResponse) => this.accountService.handleError(err)
+    );
+  }
 }
