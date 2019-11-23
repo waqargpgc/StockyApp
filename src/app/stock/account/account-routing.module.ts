@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { P403Component } from "../common/403.component";
+//import { P403Component } from "../common/403.component";
 import { ProfileComponent } from './components/profile/profile.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { UserComponent } from './components/users/user.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
   // main routes
   // { path: "login", component: LoginComponent },
   // { path: "register", component: RegisterComponent },
-  { path: "forbidden", component: P403Component },
+ // { path: "forbidden", component: P403Component },
   { path: "roles", component: RolesComponent },
   { path: "users", component: UserComponent },
   { path: "profile", component: ProfileComponent },

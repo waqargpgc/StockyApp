@@ -18,6 +18,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { P403Component } from '../common/403.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -42,6 +43,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     RoleDetailComponent,
     UserComponent,
     UserDetailComponent,
+
   ],
   entryComponents: [
     RoleDetailComponent,

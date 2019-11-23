@@ -44,11 +44,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
   ],
 
   exports: [
-    // export components
-    P403Component,
-    P404Component,
-    P500Component,
-
     // export modules
    BsDropdownModule,
    TabsModule,

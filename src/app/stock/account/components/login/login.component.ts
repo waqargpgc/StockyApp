@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AccountService } from './../../../../services/account.service';
 import { Router } from '@angular/router';
-import { ApiEndPoints } from './../../../../models/constants';
+import { ApiEndPoints, avatarThumbnail } from './../../../../models/constants';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
@@ -23,9 +23,13 @@ export class LoginComponent {
     req$.subscribe(
       resp => {
         let token = (<any>resp).token;
-        let profileImage = resp.profile.avatarURL;
         localStorage.setItem("token", token);
+        if(resp.profile.avatarURL != null){
+        let profileImage = resp.profile.avatarURL;
         localStorage.setItem("avatar", `${ApiEndPoints.ApiRoot}/${profileImage}`);
+        }else{
+          localStorage.setItem("avatar",avatarThumbnail);
+        }
         this.toastr.success("Login SuccessFully", '');
         this._authService.isLoginSubject.next(true);
 

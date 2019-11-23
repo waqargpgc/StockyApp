@@ -41,10 +41,10 @@ import { SharedModule } from './stock/shared/shared.module';
 import { HttpConfigInterceptor } from './services/httpconfig.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ToastrModule } from 'ngx-toastr';
 import { DefaultLayoutComponent } from './stock/common/container/default-layout.component';
 import { AccountLayoutComponent } from './stock/account/container/account-layout.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { P403Component } from './stock/common/403.component';
 
 @NgModule({
   imports: [

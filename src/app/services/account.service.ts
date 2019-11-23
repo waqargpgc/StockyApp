@@ -203,7 +203,6 @@ export class AccountService extends HttpBaseService {
   logout(): void {
     localStorage.clear();
     this.isLoginSubject.next(false);
-
     this.router.navigate(["/login"]);
   }
 

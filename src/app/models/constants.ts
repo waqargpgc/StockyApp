@@ -43,4 +43,4 @@ export class ApiEndPoints {
 }
 
 
-export const avatarThumbnail = "assets/img/avatars/avatar.png";
+export const avatarThumbnail = "assets/img/avatar.png";

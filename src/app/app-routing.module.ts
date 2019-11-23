@@ -6,6 +6,7 @@ import { AccountLayoutComponent } from './stock/account/container/account-layout
 import { RegisterComponent } from './stock/account/components/register/register.component';
 import { LoginComponent } from './stock/account/components/login/login.component';
 import { OnlyLoggedInUsers } from './services/auth-gaurd.services';
+import { P403Component } from './stock/common/403.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -41,6 +42,9 @@ const routes: Routes = [
     path: 'po', component: DefaultLayoutComponent,
     canActivate: [OnlyLoggedInUsers],
     loadChildren: "./stock/purchase-order/purchase-order.module#PurchaseOrdersModule"
+  },
+  {
+    path: 'forbidden', component: P403Component
   },
 
   { path: '**', component: P404Component },

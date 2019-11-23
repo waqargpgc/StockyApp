@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { AccountService } from './../../services/account.service';
 
 @Component({
   templateUrl: "403.component.html",
   styleUrls: ["error.component.css"]
 })
 export class P403Component {
-  constructor(private _router: Router) {}
+  constructor(public authService: AccountService) {}
 
   GoBack() {
-    this._router.navigate(["/"]);
+    this.authService.logout();
   }
 }

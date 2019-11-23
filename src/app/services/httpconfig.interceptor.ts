@@ -51,7 +51,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
         if (error.status == 403) {
           this._atuh.handleError(error);
-          this._router.navigate(['/account/forbidden']);
+          this._router.navigate(['/forbidden']);
         }
 
         let data = {};
