@@ -20,21 +20,18 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.reloadSetting();
-  }
-
-  reloadSetting() {
     this.getUser();
     this.initSettings();
+
     this.avatarUrl = localStorage.getItem('avatar');
   }
+
 
   getUser() {
     let req$ = this.accountService.getCurrentUser();
     req$.subscribe(
       (resp: any) => {
         this.user = resp;
-        localStorage.setItem("avatar", `${ApiEndPoints.ApiRoot}/${resp.avatarURL}`);
       },
       (err: HttpErrorResponse) => this.accountService.handleError(err)
     );
@@ -58,7 +55,7 @@ export class ProfileComponent implements OnInit {
         console.log(event.body);
         localStorage.setItem("avatar", `${ApiEndPoints.ApiRoot}/${event.body.avatarURL}`);
         this.toastr.success("Avatar updated", '');
-        this.reloadSetting();
+        this.avatarUrl = localStorage.getItem('avatar');
         //this.message = event.body.toString();
       }
     })
@@ -105,7 +102,6 @@ export class ProfileComponent implements OnInit {
 
   imgPreview(eve) {
     this.avatarUrl = eve.target.src;
-    localStorage.setItem("avatar",this.avatarUrl);
   }
 
   async updateSelectedAvatar(img: any) {
