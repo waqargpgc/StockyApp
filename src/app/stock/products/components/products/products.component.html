@@ -1,57 +1,83 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-header">
-      <!-- <h5 class="pull-left"> Products </h5> -->
-      <div class="pull-left">
-        <input type="text" id="searchFilter" class="input-sm form-control" style="width:255px"
-          placeholder="SEARCH BY PRODUCT NAME">
-        <!-- <label for="">SEARCH BY location NAME</label> -->
-      </div>
-      <button class="btn btn-sm btn-square btn-primary pull-right" type="button" [routerLink]="['/products/add']">
-        <span class="fa fa-plus"></span> &nbsp;Add
-        Product</button>
-    </div>
-    <div class="card-body row">
-      <div class="col-md">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-sm table-striped">
-              <thead class="thead-light text-center">
-                <tr>
-                  <th>S.No</th>
-                  <th>Product Name</th>
-                  <!-- <th>Description</th> -->
-                  <th>Created At</th>
-                  <th> Status </th>
-                  <th> Action </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of productList;let i=index">
-                  <td> {{ i + 1 }} </td>
-                  <td> {{ item?.name }} </td>
-                  <!-- <td> {{ item?.description }} </td> -->
-                  <td> {{ item?.createdDate | date:fullDate  }} </td>
-                  <td>
-                    <span *ngIf="item.isActive" class="badge badge-pill badge-success mr-1"
-                      style="font-size: .9em;">{{ item.isActive }}</span>
-                    <span *ngIf="!item.isActive" class="badge badge-pill badge-danger mr-1"
-                      style="font-size: .9em;">{{ item.isActive }}</span>
-                  </td>
-                  <td>
-                    <span class="pointer">
-                      <i class="fa fa-trash mr-1" (click)="Delete(item)" placement="top" tooltip="Delete"></i>
-                    </span>
-                    <span class="pointer">
-                      <i class="fa fa-edit mr-1" (click)="Update(item.id)" placement="top" tooltip="Update"></i>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+    <div class="card">
+        <div class="card-header">
+            <!-- <h5 class="pull-left"> Products </h5> -->
+            <div class="pull-left">
+                <input type="text" id="searchFilter" class="input-sm form-control" style="width:255px" placeholder="SEARCH BY PRODUCT NAME">
+                <!-- <label for="">SEARCH BY location NAME</label> -->
+            </div>
+            <div class="pull-right ml-2 dropdown" style="margin-top: 2px;" dropdown>
+                <a data-toggle="dropdown" href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+                    <span class="fa fa-2x fa-ellipsis-v"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                    <div class="dropdown-header text-center"><strong>Settings</strong></div>
+                    <a class="dropdown-item" [routerLink]="['/account/profile']"><i class="fa fa-user"></i> Profile</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i>Manage Colors</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i>Manage Sizes</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i>Manage Categories</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i>Product Supplier Assigment</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i>Block Product</a>
+                </div>
+            </div>
+            <button class="btn btn-sm btn-square btn-primary pull-right" type="button" [routerLink]="['/products/add']">
+             <span class="fa fa-plus"></span> &nbsp;Add Product</button>
         </div>
-      </div>
+        <div class="card-body row">
+            <div class="col-md">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-light text-center">
+                                <tr>
+                                    <th><input type="checkbox" (click)="SelectAllProducts()" [(ngModel)]="SelectAll"></th>
+                                    <th>S.No</th>
+                                    <th>Product Name</th>
+                                    <!-- <th>Description</th> -->
+                                    <th>Created At</th>
+                                    <th> Status </th>
+                                    <th> Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of productList;let i=index">
+                                    <td> <input type="checkbox" (click)="SelectOneProduct(item._id,item.selected?'uncheck':'check')" [(ngModel)]="item.selected"> </td>
+                                    <td> {{ i + 1 }} </td>
+                                    <td> {{ item?.name }} </td>
+                                    <!-- <td> {{ item?.description }} </td> -->
+                                    <td> {{ item?.createdDate | date:fullDate }} </td>
+                                    <td>
+                                        <span *ngIf="item.isActive" class="badge badge-pill badge-success mr-1" style="font-size: .9em;">{{ item.isActive }}</span>
+                                        <span *ngIf="!item.isActive" class="badge badge-pill badge-danger mr-1" style="font-size: .9em;">{{ item.isActive }}</span>
+                                    </td>
+                                    <td>
+                                        <!-- <span class="pointer">
+                                         <i class="fa fa-trash mr-1" (click)="Delete(item)" placement="top" tooltip="Delete"></i>
+                                         </span>
+                                        <span class="pointer">
+                                        <i class="fa fa-edit mr-1" (click)="Update(item.id)" placement="top" tooltip="Update"></i>
+                                        </span> -->
+                                        <div class="d-inline-block dropdown" style="margin-top: 2px;" dropdown>
+                                            <a data-toggle="dropdown" href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+                                                <span style="color: black;" class="fa fa-ellipsis-h"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                <div class="dropdown-header text-center"><strong>Settings</strong></div>
+                                                <a class="dropdown-item" [routerLink]="['/account/profile']"><i class="fa fa-user"></i> Profile</a>
+                                                <a class="dropdown-item" href="#"><i class="fa fa-eye"></i>View</a>
+                                                <a class="dropdown-item" (click)="Update(item.id)" placement="top" tooltip="Update"><i class="fa fa-edit"></i>Edit</a>
+                                                <a class="dropdown-item" (click)="Delete(item)" placement="top" tooltip="Delete"><i class="fa fa-trash"></i>Delete</a>
+                                                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i>Block</a>
+                                                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i>Transaction History</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

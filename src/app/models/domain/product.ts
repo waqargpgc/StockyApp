@@ -22,7 +22,7 @@ export class Product extends BaseModel {
     weight: number;
     width: number;
     size: number;
-
+    selected:boolean;
     unitsInStock: number;
     minStockLevel: number;
     buyingPrice: number;

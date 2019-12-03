@@ -20,6 +20,8 @@ export class ProductsComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 13;
   public Search: string;
+  SelectAll: boolean;
+  ProductIdsArray: any = [];
 
   constructor(
     private toastr: ToastrService,
@@ -89,8 +91,26 @@ export class ProductsComponent implements OnInit {
       }
     }
   }
-
   Update(id: any) {
     this.router.navigate(['/products/add', {id:id}]);
+  }
+
+  SelectAllProducts() {
+    this.SelectAll = !this.SelectAll;
+    this.productList.forEach(item => {
+      item.selected = this.SelectAll;
+      if (item.selected == false) {
+
+      }
+    });
+  }
+  SelectOneProduct(id, value) {
+    if (value == 'check') {
+     this.ProductIdsArray.push(id);
+    }
+    else {
+      this.ProductIdsArray = this.ProductIdsArray.filter(item => item !== id);
+    }
+
   }
 }
