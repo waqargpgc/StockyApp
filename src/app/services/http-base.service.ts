@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpSetup } from './../models/common';
 import { tap, map } from 'rxjs/operators';
+import buildQuery from 'odata-query';
 
 @Injectable({
   providedIn: 'root'
@@ -114,6 +115,40 @@ export class HttpBaseService {
         this.handleError(err);
         return err;
       })
+  }
+
+  public buildQuery(qry) {
+  //  return buildQuery(qry)
+
+    const qryObj =
+    {
+      filter:
+      {
+        and: [
+          { 'tolower(name)': { contains: 'nood' } },
+          "startswith(name, 'Cu')"
+        ]
+      },
+      select: ["name", "id"],
+      expand: [
+        //  "*",
+        {
+          brand: {
+            select: ['name', 'id'],
+          }
+        },
+        {
+          color: {
+            select: ['name', 'id'],
+          }
+        }
+      ],
+      skip: 0,
+      top: 20,
+      orderBy: 'name',
+    };
+    qry = buildQuery(qryObj);
+    console.log(qry);
   }
 
   logInfo(endpoint = "", item = null) {
