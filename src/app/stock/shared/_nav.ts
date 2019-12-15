@@ -31,50 +31,68 @@ export interface NavData {
 
 export const navItems: NavData[] = [
   {
-    name: "Products",
-    url: "/products",
-    icon: "fa fa-sliders",
-  },
-  {
     name: "Inventory",
-    url: "/inventories",
+    url: "/inv",
     icon: "fa fa-compass",
-  },
-  {
-    name: "Purchase Orders",
-    url: "/po",
-    icon: "fa fa-shopping-cart",
-  },
-  {
-    name: "Sales Orders",
-    url: "/",
-    icon: "fa fa-shopping-cart",
-  },
-  {
-    name: "More",
-    url: "/stock",
-    icon: "fa fa-arrow-circle-down",
     children: [
       {
-        name: "Companies",
-        url: "/stock/companies",
-      },
-      {
-        name: "InventoryLocation",
-        url: "/stock/inventoryLocation",
-      },
-      {
-        name: "Customers",
-        url: "/stock/customers",
-      },
-      {
-        name: "Suppliers",
-        url: "/stock/suppliers",
+        name: "Product",
+        url: "/inv/products",
       },
       {
         name: "Product Categories",
-        url: "/stock/categories",
-      }
+        url: "/inv/p-ategories",
+      },
+      {
+        name: "Current Stock",
+        url: "/inv/crr-stock",
+      },
+      // {
+      //   name: "Transation History",
+      //   url: "/inv/history",
+      // },
+      {
+        name: "Adjust Stock",
+        url: "/inv/adj-stock",
+      },
+      {
+        name: "Count Stock",
+        url: "/inv/count-stock",
+      },
+      {
+        name: "Transfer Stock",
+        url: "/inv/tns-stock",
+      },
+    ]
+  },
+  {
+    name: "In flow",
+    url: "/inflow",
+    icon: "fa fa-sliders",
+    children: [
+      {
+        name: "Purchase orders",
+        url: "/inflow/po",
+      },
+      {
+        name: "Customers",
+        url: "/inflow/customers",
+      },
+    ]
+  },
+  {
+    name: "Out flow",
+    url: "/outflow",
+    icon: "fa fa-sliders",
+    children: [
+      {
+        name: "Sale orders",
+        url: "/inflow/so",
+      },
+      {
+        name: "Suppliers",
+        url: "/inflow/suppliers",
+      },
     ]
   }
 ];
