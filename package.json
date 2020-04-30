@@ -54,7 +54,7 @@
     "ngx-bootstrap": "^5.0.0",
     "ngx-perfect-scrollbar": "^8.0.0",
     "ngx-toastr": "^10.0.2",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "rxjs": "^6.5.2",
     "simple-line-icons": "^2.4.1",
     "ts-helpers": "^1.1.2",
